@@ -61,7 +61,7 @@ public class TowerBuilder : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone"))
             {
-                dragging_go.transform.position = hit.collider.transform.position;
+                if (grid[TakegoCell(hit.collider.gameObject)] == 0) dragging_go.transform.position = hit.collider.transform.position;
 
                 if (Input.GetMouseButtonDown(0))
                 {

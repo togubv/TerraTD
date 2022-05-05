@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     public event PlayerHPHandler PlayerHPHandlerEvent;
 
     public int PlayerHp { get; private set; }
+    public int IncomeInterval => incomeInterval;
 
     private void Awake()
     {

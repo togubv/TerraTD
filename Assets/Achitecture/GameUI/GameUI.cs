@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
     //[SerializeField] private GameScene gameScene;
     [Header("Game objects")]
     [SerializeField] private GameObject goDragging;
+    [SerializeField] private Slider sliderIncome;
     [SerializeField] private Text textBank, textPlayerHP, textIncome;
 
     private Bank bank;
@@ -23,6 +24,7 @@ public class GameUI : MonoBehaviour
     private int[] pool;
     private Sprite[] towerSprite;
     private TowerCard[] cardTower;
+    private bool isGame;
 
 
     //[SerializeField] private TowerBuilder tower_builder;
@@ -70,6 +72,8 @@ public class GameUI : MonoBehaviour
         bank.IncomeUpdateHandlerEvent += UpdateIncomeUI;
         levelManager.PlayerHPHandlerEvent += UpdatePlayerHPUI;
         towerBuilder.StartTowerCooldownEvent += StartboolButtonCooldownAnimation;
+        isGame = true;
+        StartCoroutine(SliderIncomeValue());
     }
 
     private void Initialize()
@@ -162,5 +166,16 @@ public class GameUI : MonoBehaviour
         yield return new WaitForSeconds(cooldown);
         //boolButtonCooldown[i] = false;
         buttonButtonLevelPool[i].enabled = true;
+    }
+
+    private IEnumerator SliderIncomeValue()
+    {
+        sliderIncome.maxValue = levelManager.IncomeInterval;
+        while (sliderIncome)
+        {
+            if (sliderIncome.value < sliderIncome.maxValue) sliderIncome.value += 1.0f;
+            else sliderIncome.value = 1.0f;
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 }
