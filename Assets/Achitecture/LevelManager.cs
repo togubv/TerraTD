@@ -9,17 +9,16 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject canvas_gameUI;
     [SerializeField] private GameObject tower_builder;
 
-    public Event update_grid;
-    public int startMoney, startHP, startIncome;
+    [Header("Level settings")]
+    [SerializeField] private int startMoney;
+    [SerializeField] private int startHP;
+    [SerializeField] private int startIncome;
+    [SerializeField] private int minMobCount;
+    [SerializeField] private int maxMobCount;
 
     private Bank bank;
-    //private int[] pool;
     private bool isGame;
     private int incomeInterval;
-    private GameObject[] tower_prefab_list;
-
-    public GameObject[] Tower_prefab_list => tower_prefab_list;
-    //public int[] Pool => pool;
 
     public delegate void PlayerHPHandler(object sender, int oldHP, int newHP);
     public event PlayerHPHandler PlayerHPHandlerEvent;
@@ -62,7 +61,7 @@ public class LevelManager : MonoBehaviour
 
     public void DecreasePlayerHP(object sender, int count)
     {
-        if (CheckPlayerHP(count))
+        if (CheckPlayerHP(count)) 
         {
             int oldHP = this.PlayerHp;
             this.PlayerHp -= count;

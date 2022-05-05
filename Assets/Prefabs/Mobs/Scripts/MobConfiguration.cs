@@ -5,6 +5,8 @@ using UnityEngine;
 public class MobConfiguration : Unit
 {
     [SerializeField] private MobCard card;
+
+    private Spawner spawner;
     private Animator anim;
 
     private void Awake()
@@ -14,6 +16,11 @@ public class MobConfiguration : Unit
 
         anim = GetComponent<Animator>();
         GetComponent<MobController>().SetStats(card);
+    }
+
+    public void SetSpawner(Spawner spawner)
+    {
+        this.spawner = spawner;
     }
 
     public override void DamagedAnimation()
@@ -28,11 +35,15 @@ public class MobConfiguration : Unit
         {
             Die();
         }
-        DamagedAnimation();
+        else
+        {
+            DamagedAnimation();
+        }
     }
 
     public override void Die()
     {
+        spawner.RemoveMobFromMobPool(gameObject);
         Debug.Log("MOB DIED!");
         Destroy(gameObject);
     }

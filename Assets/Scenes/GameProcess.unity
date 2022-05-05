@@ -3650,9 +3650,11 @@ MonoBehaviour:
   canvas_draft: {fileID: 1112015173}
   canvas_gameUI: {fileID: 1780255178}
   tower_builder: {fileID: 1006274997}
-  startMoney: 20
+  startMoney: 10
   startHP: 5
   startIncome: 1
+  minMobCount: 6
+  maxMobCount: 9
 --- !u!4 &569559248
 Transform:
   m_ObjectHideFlags: 0
@@ -5627,10 +5629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682f7b2beaabbb242a625fbaa4b39431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bank: {fileID: 569559249}
-  prefab_unit: {fileID: 4835744717490261377, guid: 2ac430daaa881fe4aaad829598cac0d3, type: 3}
-  scene_objects: {fileID: 492896625}
-  unit_speed: 0.45
+  prefabUnit: {fileID: 4835744717490261377, guid: 2ac430daaa881fe4aaad829598cac0d3, type: 3}
+  sceneObjects: {fileID: 492896625}
   cellsSpawner:
   - {fileID: 2046753935}
   - {fileID: 1963501117}

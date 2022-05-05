@@ -16,7 +16,7 @@ MonoBehaviour:
   _mob_name: Zombie
   _sprite: {fileID: 21300000, guid: 45286052cdc72554eb18acaccdd1f43f, type: 3}
   _max_hp: 5
-  _speed: 1
+  _speed: 0.5
   _damage: 1
-  _cooldown: 1
-  _reward: 1
+  _cooldown: 1.5
+  _reward: 0

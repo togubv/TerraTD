@@ -72,7 +72,6 @@ public class GameUI : MonoBehaviour
         bank.IncomeUpdateHandlerEvent += UpdateIncomeUI;
         levelManager.PlayerHPHandlerEvent += UpdatePlayerHPUI;
         towerBuilder.StartTowerCooldownEvent += StartboolButtonCooldownAnimation;
-        isGame = true;
         StartCoroutine(SliderIncomeValue());
     }
 
@@ -117,7 +116,7 @@ public class GameUI : MonoBehaviour
     private void UpdateTowerButtons(object sender, int oldCount, int newCount)
     {
         UpdateCurrentGoldCountUI(newCount);
-        Debug.Log($"Get {newCount} from {sender.GetType()} reward");
+        //Debug.Log($"Get {newCount} from {sender.GetType()} reward");
         UpdateButtonsColor(newCount);
     }
 

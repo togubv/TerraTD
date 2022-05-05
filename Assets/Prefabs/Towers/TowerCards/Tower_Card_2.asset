@@ -18,7 +18,8 @@ MonoBehaviour:
   _weapon_type: {fileID: 8709304761669737783, guid: bcca58f786bf4d74e91144f00e81ebc2, type: 3}
   _shell: {fileID: 4198378527707193048, guid: 44d064f320c952f4083f7a1c2d10feb5, type: 3}
   _cost: 2
-  _build_cooldown: 10
+  _build_cooldown: 8
+  _income: 0
   _max_hp: 5
   _damage: 1
   _cooldown: 1.5
