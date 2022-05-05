@@ -11,7 +11,8 @@ public class MobCard : ScriptableObject
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
     [SerializeField] private float _cooldown;
-    [SerializeField] private int _reward;
+    [SerializeField] private int _rewardElementID;
+    [SerializeField] private int _rewardCount;
 
     public int id => _id;
     public string mob_nameame => _mob_name;
@@ -20,5 +21,6 @@ public class MobCard : ScriptableObject
     public float speed => _speed;
     public float damage => _damage;
     public float cooldown => _cooldown;
-    public int reward => _reward;
+    public int rewardElementID => _rewardElementID;
+    public int rewardCount => _rewardCount;
 }

@@ -12,6 +12,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject goDragging;
     [SerializeField] private Slider sliderIncome;
     [SerializeField] private Text textBank, textPlayerHP, textIncome;
+    [SerializeField] private Text textFire, textWater, textEarth, textAir;
 
     private Bank bank;
     private Slider[] sliderButtonLevelPool;
@@ -70,6 +71,7 @@ public class GameUI : MonoBehaviour
         sprR_dragging_tower = goDragging.GetComponent<SpriteRenderer>();
         bank.BankUpdateHandlerEvent += UpdateTowerButtons;
         bank.IncomeUpdateHandlerEvent += UpdateIncomeUI;
+        bank.ElementCountUpdateHandlerEvent += UpdateElements;
         levelManager.PlayerHPHandlerEvent += UpdatePlayerHPUI;
         towerBuilder.StartTowerCooldownEvent += StartboolButtonCooldownAnimation;
         StartCoroutine(SliderIncomeValue());
@@ -175,6 +177,25 @@ public class GameUI : MonoBehaviour
             if (sliderIncome.value < sliderIncome.maxValue) sliderIncome.value += 1.0f;
             else sliderIncome.value = 1.0f;
             yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    private void UpdateElements(object sender, int elementID, int oldCount, int newCount)
+    {
+        switch(elementID)
+        {
+            case 1:
+                textFire.text = newCount.ToString();
+                break;
+            case 2:
+                textWater.text = newCount.ToString();
+                break;
+            case 3:
+                textEarth.text = newCount.ToString();
+                break;
+            case 4:
+                textAir.text = newCount.ToString();
+                break;
         }
     }
 }

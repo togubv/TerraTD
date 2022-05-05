@@ -6,6 +6,7 @@ public class MobConfiguration : Unit
 {
     [SerializeField] private MobCard card;
 
+    private Bank bank;
     private Spawner spawner;
     private Animator anim;
 
@@ -22,6 +23,12 @@ public class MobConfiguration : Unit
     {
         this.spawner = spawner;
     }
+
+    public void SetBank(Bank bank)
+    {
+        this.bank = bank;
+    }
+
 
     public override void DamagedAnimation()
     {
@@ -43,6 +50,10 @@ public class MobConfiguration : Unit
 
     public override void Die()
     {
+        if (card.rewardElementID != 0)
+        {
+            bank.IncreaseElementCount(this, card.rewardElementID, 1);
+        }
         spawner.RemoveMobFromMobPool(gameObject);
         Debug.Log("MOB DIED!");
         Destroy(gameObject);
