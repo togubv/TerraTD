@@ -11,15 +11,18 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private GameObject dragging_go;
 
     private GameObject[] goButtonLevelPool;
-    private GameObject[] prefabTower;  
-    private TowerCard[] cardTower;
+    private GameObject[] prefabTower;
+    [SerializeField] private TowerCard[] cardTower;
     [SerializeField] private int[] pool;
-    private int[] grid;
+    [SerializeField] private int[] grid;
     private GameObject[] goCell;
 
     private int draggingTowerID;
-    private bool isDrag;
+    [SerializeField] private int neededElementTowerID;
+    private bool isDragTower;
+    private bool isDragElement;
     private GameObject pressedButton;
+    [SerializeField] private GameObject[] builtTower;
 
     public delegate void StartTowerCooldown(GameObject go, float duration);
     public event StartTowerCooldown StartTowerCooldownEvent;
@@ -38,60 +41,97 @@ public class TowerBuilder : MonoBehaviour
         goButtonLevelPool = gameScene.GoButtonLevelPool;
         prefabTower = gameScene.PrefabTower;
         cardTower = gameScene.CardTower;
-    }
-
-    private void OnEnable()
-    {
-        //pool = levelmanager.Pool;
-        //prefabTower = levelmanager.Tower_prefab_list;
-        //sprite_list = new Sprite[prefabTower.Length + 1];
-
-        //for (int i = 1; i < sprite_list.Length; i++)
-        //{
-        //    sprite_list[i] = prefabTower[i - 1].GetComponent<TowerConfuguration>().Card.sprite;
-        //}
+        builtTower = new GameObject[grid.Length];
     }
 
     private void Update()
     {
-        if (isDrag)
+        if (isDragTower)
         {
-            Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);          
-            RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
+            IsDragTower();
+        }
 
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone"))
-            {
-                if (grid[TakegoCell(hit.collider.gameObject)] == 0) dragging_go.transform.position = hit.collider.transform.position;
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    int id = TakegoCell(hit.collider.gameObject);
-                    if (grid[id] == 0)
-                    {
-                        SetNewTower(draggingTowerID, hit.collider.gameObject, id);
-                        isDrag = false;
-                    }
-                }
-            }
-            else
-            {
-                dragging_go.transform.position = cursor;
-            }
+        if (isDragElement)
+        {
+            IsDragElement();
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            isDrag = false;
+            isDragTower = false;
+            isDragElement = false;
         }
     }
 
-    public void StartTowerDragging(GameObject go)
+    private void IsDragTower()
     {
-        int i = TakeButtonNumber(go);
-        if (pool[i] != 0 && cardTower[pool[i] - 1].cost <= bank.count)
+        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] == 0)
         {
-            pressedButton = go;
-            draggingTowerID = pool[i];
+            dragging_go.transform.position = hit.collider.transform.position;
+            if (Input.GetMouseButtonDown(0))
+            {
+                int id = TakegoCell(hit.collider.gameObject);
+                if (grid[id] == 0)
+                {
+                    SetNewTower(draggingTowerID, hit.collider.gameObject, id);
+                    isDragTower = false;
+                }
+            }
+        }
+        else
+        {
+            dragging_go.transform.position = cursor;
+            return;
+        }
+    }
+    private void IsDragElement()
+    {
+        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] == neededElementTowerID)
+        {
+            dragging_go.transform.position = hit.collider.transform.position;
+            if (Input.GetMouseButtonDown(0))
+            {
+                int id = TakegoCell(hit.collider.gameObject);
+                SetElementToTower(draggingTowerID, hit.collider.gameObject, id);
+                isDragElement = false;
+            }
+        }
+        else
+        {
+            dragging_go.transform.position = cursor;
+            return;
+        }
+    }
+
+    public void StartDragging(GameObject go)
+    {
+        int buttonID = TakeButtonNumber(go);
+        if (pool[buttonID] == 0)
+            return;
+        pressedButton = go;
+        TowerType type = cardTower[pool[buttonID] - 1].type;
+        switch (type)
+        {
+            case TowerType.Element:
+                StartElementDragging(buttonID);
+                break;
+            default:
+                StartTowerDragging(buttonID);
+                break;
+        }
+    }
+
+    public void StartTowerDragging(int buttonID)
+    {
+        if (cardTower[pool[buttonID] - 1].cost <= bank.count)
+        {
+            draggingTowerID = pool[buttonID];
             StartCoroutine(DragTower());
         }
         else
@@ -101,7 +141,63 @@ public class TowerBuilder : MonoBehaviour
         }
     }
 
-        private int TakeButtonNumber(GameObject go)
+    public void StartElementDragging(int buttonID)
+    {
+        int elementID = pool[buttonID];
+        draggingTowerID = buttonID;
+        neededElementTowerID = 2;
+        switch (elementID)
+        {
+            case 6:
+                if (cardTower[pool[buttonID] - 1].cost <= bank.countFire)
+                {
+                    StartCoroutine(DragElement());
+                }
+                else
+                {
+                    BreakElementDrag();
+                    Debug.Log("Fire element is not enough");
+                }
+                break;
+            case 7:
+                if (cardTower[pool[buttonID] - 1].cost <= bank.countWater)
+                {
+                    StartCoroutine(DragElement());
+                }
+                else
+                {
+                    BreakElementDrag();
+                    Debug.Log("Water element is not enough");
+                }
+                break;
+            case 8:
+                if (cardTower[pool[buttonID] - 1].cost <= bank.countEarth)
+                {
+                    Debug.Log("pool[buttonID]: " + pool[buttonID]);
+                    StartCoroutine(DragElement());
+                }
+                else
+                {
+                    BreakElementDrag();
+                    Debug.Log("Earth element is not enough");
+                }
+                break;
+            case 9:
+                if (cardTower[pool[buttonID] - 1].cost <= bank.countAir)
+                {
+                    Debug.Log("pool[buttonID]: " + pool[buttonID]);
+                    StartCoroutine(DragElement());
+                }
+                else
+                {
+                    BreakElementDrag();
+                    Debug.Log("Air element is not enough");
+                }
+                break;
+        }
+    }
+
+    private int TakeButtonNumber(GameObject go)
     {
         for (int i = 0; i < goButtonLevelPool.Length; i++)
         {
@@ -114,15 +210,33 @@ public class TowerBuilder : MonoBehaviour
     private IEnumerator DragTower()
     {
         StartDrag();
-        yield return new WaitUntil(() => isDrag == false);
+        yield return new WaitUntil(() => isDragTower == false);
         BreakDrag();
+    }
+
+    private IEnumerator DragElement()
+    {
+        StartElementDrag();
+        yield return new WaitUntil(() => isDragElement == false);
+        BreakElementDrag();
+    }
+    private void StartElementDrag()
+    {
+        dragging_go.SetActive(true);
+        isDragElement = true;
+    }
+
+    private void BreakElementDrag()
+    {
+        dragging_go.SetActive(false);
+        neededElementTowerID = 0;
+        pressedButton = null;
     }
 
     private void StartDrag()
     {
         dragging_go.SetActive(true);
-        isDrag = true;
-        Debug.Log("DRAG");
+        isDragTower = true;
     }
 
     private void BreakDrag()
@@ -130,7 +244,6 @@ public class TowerBuilder : MonoBehaviour
         dragging_go.SetActive(false);
         draggingTowerID = 0;
         pressedButton = null;
-        Debug.Log("BREAK DRAG");
     }
 
     private void SetNewTower(int tower_id, GameObject go, int cell_id)
@@ -139,9 +252,17 @@ public class TowerBuilder : MonoBehaviour
         GameObject new_tower = Instantiate(prefabTower[tower_id - 1], go.transform.position, Quaternion.identity, transform);
         new_tower.GetComponent<TowerConfuguration>().SetNumber(cell_id);
         bank.DecreaseBank(this, prefabTower[tower_id - 1].GetComponent<TowerConfuguration>().Card.cost);
+        builtTower[cell_id] = new_tower;
 
         StartTowerCooldownEvent?.Invoke(pressedButton, prefabTower[tower_id - 1].GetComponent<TowerConfuguration>().Card.build_cooldown);
         if (prefabTower[tower_id - 1].GetComponent<TowerConfuguration>().Card.income > 0) bank.IncreaseIncome(this, 1);
+    }
+
+    private void SetElementToTower(int elementID, GameObject go, int cell_id)
+    {
+        int replacedCellID = grid[cell_id];
+        RemoveTowerFromGame(cell_id, 0);
+        SetNewTower(cardTower[replacedCellID - 1].upperTower[elementID - 6], go, cell_id);
     }
 
     private int TakegoCell(GameObject go)
@@ -151,12 +272,20 @@ public class TowerBuilder : MonoBehaviour
             if (go == goCell[i]) return i;
         }
         Debug.Log("NOT FOUND GO NUMBER IN ARRAY");
-        isDrag = false;
+        isDragTower = false;
         return -1;
     }
 
-    public void RemoveTower(int number)
+    private void RemoveTowerFromGame(int cellID, int cashBack)
     {
-        grid[number] = 0;
+        Destroy(builtTower[cellID]);
+        RemoveTowerFromGrid(cellID);
+        if (cashBack > 0) bank.IncreaseBank(this, cashBack);
+    }
+
+    public void RemoveTowerFromGrid(int cellID)
+    {
+        grid[cellID] = 0;
+        builtTower[cellID] = null;
     }
 }

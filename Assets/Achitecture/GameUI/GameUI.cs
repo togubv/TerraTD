@@ -96,7 +96,11 @@ public class GameUI : MonoBehaviour
             //imageButtonLevelPool[i].sprite = towerSprite[pool[i]];
             buttonButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Button>();
             sliderButtonLevelPool[i] = goButtonLevelPool[i].GetComponentInChildren<Slider>();
-            if (pool[i] == 0) goButtonLevelPool[i].SetActive(false);
+            if (i > 1 && i < 6)
+            {
+                buttonButtonLevelPool[i].enabled = false;
+                imageButtonLevelPool[i].enabled = false;
+            }
         }
     }
 

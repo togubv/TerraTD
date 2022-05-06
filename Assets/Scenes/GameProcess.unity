@@ -381,6 +381,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (3)
@@ -448,6 +452,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (24)
@@ -602,6 +610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (26)
@@ -872,6 +884,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (27)
@@ -1042,6 +1058,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -1321,6 +1341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -1460,6 +1484,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (20)
@@ -1531,6 +1559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 49
@@ -1598,6 +1630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 54
@@ -1664,6 +1700,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -1766,7 +1806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1941,7 +1981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2455,6 +2495,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (14)
@@ -2636,7 +2680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2814,6 +2858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 56
@@ -2880,6 +2928,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -2992,6 +3044,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 569559247}
+    - target: {fileID: 5942494687379266510, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570809428045885367, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
       propertyPath: m_Name
       value: CellBase (1)
@@ -3048,7 +3104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3185,6 +3241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (16)
@@ -3286,6 +3346,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -3434,6 +3498,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (5)
@@ -3539,7 +3607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3680,6 +3748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 58
@@ -3813,6 +3885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -3876,6 +3952,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (22)
@@ -3947,6 +4027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 41
@@ -4010,6 +4094,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (1)
@@ -4252,6 +4340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -4319,6 +4411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -4382,6 +4478,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (2)
@@ -4491,6 +4591,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -4603,6 +4707,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 569559247}
+    - target: {fileID: 5942494687379266510, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570809428045885367, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
       propertyPath: m_Name
       value: CellBase (6)
@@ -4784,6 +4892,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (25)
@@ -5014,6 +5126,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (13)
@@ -5081,6 +5197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (23)
@@ -5228,6 +5348,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (18)
@@ -5375,6 +5499,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (4)
@@ -5442,6 +5570,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (6)
@@ -5803,7 +5935,7 @@ MonoBehaviour:
   - {fileID: 1397483067}
   - {fileID: 2098750182}
   mobPool: []
-  waveMobCountMax: 0
+  waveMobCountMax: 5
   waveMobCountCurrent: 0
   minDelay: 5
   maxDelay: 8
@@ -6233,6 +6365,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 569559247}
+    - target: {fileID: 5942494687379266510, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570809428045885367, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
       propertyPath: m_Name
       value: CellBase (4)
@@ -6645,7 +6781,11 @@ MonoBehaviour:
   gameScene: {fileID: 1749922899}
   bank: {fileID: 569559249}
   dragging_go: {fileID: 1009755391}
-  pool: 01000000020000000300000004000000050000000600000000000000000000000000000000000000
+  cardTower: []
+  pool: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  grid: 
+  neededElementTowerID: 0
+  builtTower: []
 --- !u!4 &1006274999
 Transform:
   m_ObjectHideFlags: 0
@@ -6678,7 +6818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &1009755394
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6727,7 +6867,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 500
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.45490196}
   m_FlipX: 0
@@ -6761,6 +6901,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (9)
@@ -6828,6 +6972,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (30)
@@ -6912,7 +7060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055015119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 566.99567, y: 305.78638, z: -3.08218}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6928,6 +7076,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (29)
@@ -7043,6 +7195,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 569559247}
+    - target: {fileID: 5942494687379266510, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570809428045885367, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
       propertyPath: m_Name
       value: CellBase (5)
@@ -7099,7 +7255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -7338,6 +7494,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (11)
@@ -7408,6 +7568,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -7510,7 +7674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -7695,6 +7859,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 569559247}
+    - target: {fileID: 5942494687379266510, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570809428045885367, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
       propertyPath: m_Name
       value: CellBase (3)
@@ -7713,6 +7881,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (21)
@@ -7828,6 +8000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellSpawn (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8757186982131789227, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
 --- !u!4 &1270477547 stripped
@@ -7847,6 +8023,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (17)
@@ -7994,6 +8174,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (19)
@@ -8223,6 +8407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellSpawn (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8757186982131789227, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
 --- !u!4 &1397483066 stripped
@@ -8398,6 +8586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -8545,6 +8737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 44
@@ -8655,6 +8851,10 @@ PrefabInstance:
     - target: {fileID: 8124502640508180946, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
       propertyPath: m_Name
       value: CellSpawn (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757186982131789227, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
@@ -8793,6 +8993,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -9071,6 +9275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -9137,6 +9345,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -9249,6 +9461,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 569559247}
+    - target: {fileID: 5942494687379266510, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570809428045885367, guid: 03c27188ce29fe44281cbca55d447dfb, type: 3}
       propertyPath: m_Name
       value: CellBase (2)
@@ -9270,6 +9486,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -9404,6 +9624,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -9825,6 +10049,10 @@ MonoBehaviour:
   - {fileID: 6707379641599933654, guid: 0cdd8267dd910b940a1497dbcb758e99, type: 3}
   - {fileID: 4836489765793684751, guid: 2e63c38891d33414d8fce9796688036d, type: 3}
   - {fileID: 2196045988563905671, guid: 90c73a4506eab9441b30c28a45df8d0f, type: 3}
+  - {fileID: 2461015730082327302, guid: 4e2aa52dfaf2a854ea086262b18906dd, type: 3}
+  - {fileID: 6369011619941567311, guid: 8d43cb03d5913544c8fc41bb7d8fbb34, type: 3}
+  - {fileID: 7509855740892325589, guid: 1b82f138c57973f48943ce01c3168da9, type: 3}
+  - {fileID: 9045170335990304603, guid: 16dd63288e7096941adec67963e9d99d, type: 3}
   prefabMob:
   - {fileID: 4835744717490261377, guid: 2ac430daaa881fe4aaad829598cac0d3, type: 3}
   cardTower:
@@ -9834,6 +10062,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c5a09725dff6eb4584c4e742f31a400, type: 2}
   - {fileID: 11400000, guid: 0f00efae7c481f744b10d3089790bd48, type: 2}
   - {fileID: 11400000, guid: f8bcf0028c8ac59449521417f8a73cfe, type: 2}
+  - {fileID: 11400000, guid: c8ee6debd4d97594cb3bb98a8ae676b0, type: 2}
+  - {fileID: 11400000, guid: 6f94ffc8f9f41d94787c87061a966c88, type: 2}
+  - {fileID: 11400000, guid: 04d41391da5983c45a440da6f5de2f55, type: 2}
+  - {fileID: 11400000, guid: ded27b6596a455849ba27a1b1ae60173, type: 2}
   cardMob:
   - {fileID: 11400000, guid: c56075f95821cc54eab97f5105326cf9, type: 2}
   goCell:
@@ -10090,6 +10322,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (8)
@@ -10582,6 +10818,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 39
@@ -10645,6 +10885,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (7)
@@ -10712,6 +10956,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (15)
@@ -10782,6 +11030,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -11013,6 +11265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (10)
@@ -11498,7 +11754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -11635,6 +11891,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (12)
@@ -11749,6 +12009,10 @@ PrefabInstance:
     - target: {fileID: 8124502640508180946, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
       propertyPath: m_Name
       value: CellSpawn (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757186982131789227, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
@@ -11978,7 +12242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTowerDragging
+      value: StartDragging
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -12118,6 +12382,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -12297,6 +12565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 34
@@ -12363,6 +12635,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -12475,6 +12751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellSpawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8757186982131789227, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
 --- !u!4 &2046753934 stripped
@@ -12497,6 +12777,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -12689,6 +12973,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellSpawn (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8757186982131789227, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a47dbe14dd30488b254897873f4c0, type: 3}
 --- !u!4 &2098750181 stripped
@@ -12708,6 +12996,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1001683223}
     m_Modifications:
+    - target: {fileID: 427718025224833914, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912049798215614211, guid: b783d93d344dc5745a361d17bb55d0d7, type: 3}
       propertyPath: m_Name
       value: CellNone1 (28)
@@ -13018,6 +13310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellNone2 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -13084,6 +13380,10 @@ PrefabInstance:
     - target: {fileID: 1439754152876888580, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_Name
       value: CellNone2 (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926634593869080189, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328187348439714818, guid: 343b956e4dd35504eba3bf8a450ed17d, type: 3}
       propertyPath: m_RootOrder
@@ -13326,6 +13626,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1780255183}
+    - target: {fileID: 8956622209758469384, guid: 6485c470cab459e4face976ece458365, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartDragging
+      objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469620, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_Name
       value: ButtonTower (1)

@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c59cc0821cdd8f4188672f2ade365cd, type: 3}
-  m_Name: Tower_Card_3
+  m_Name: Element_Card_Earth
   m_EditorClassIdentifier: 
-  _id: 3
-  _tower_name: 
-  _sprite: {fileID: 21300000, guid: 01555e48e9965cc479b2fe74c706762f, type: 3}
-  _weapon_type: {fileID: 8709304761669737783, guid: bcca58f786bf4d74e91144f00e81ebc2, type: 3}
-  _shell: {fileID: 4198378527707193048, guid: 44d064f320c952f4083f7a1c2d10feb5, type: 3}
-  _cost: 3
+  _id: 9
+  _tower_name: Earth element
+  _sprite: {fileID: 21300000, guid: 12c81a9ab7565fb44a529738d9bbb0c0, type: 3}
+  _weapon_type: {fileID: 0}
+  _shell: {fileID: 0}
+  _type: 2
+  _elementCost: 1
+  _cost: 0
   _build_cooldown: 10
   _income: 0
-  _max_hp: 5
-  _damage: 1
-  _cooldown: 2
-  _shell_speed: 3
+  _max_hp: 0
+  _damage: 0
+  _cooldown: 0
+  _shell_speed: 0

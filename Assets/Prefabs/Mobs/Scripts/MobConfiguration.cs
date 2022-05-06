@@ -55,7 +55,7 @@ public class MobConfiguration : Unit
             bank.IncreaseElementCount(this, card.rewardElementID, 1);
         }
         spawner.RemoveMobFromMobPool(gameObject);
-        Debug.Log("MOB DIED!");
+        //Debug.Log("MOB DIED!");
         Destroy(gameObject);
     }
 }

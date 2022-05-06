@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c59cc0821cdd8f4188672f2ade365cd, type: 3}
-  m_Name: Tower_Card_2
+  m_Name: TCard_4_Water_1
   m_EditorClassIdentifier: 
-  _id: 2
-  _tower_name: 
-  _sprite: {fileID: 21300000, guid: f100013ccb88c2242b7e6b84d4f0c5f5, type: 3}
+  _id: 4
+  _tower_name: Water Tower
+  _sprite: {fileID: 21300000, guid: 29b3ff18bd021ff4d8a5a51612108c11, type: 3}
   _weapon_type: {fileID: 8709304761669737783, guid: bcca58f786bf4d74e91144f00e81ebc2, type: 3}
-  _shell: {fileID: 4198378527707193048, guid: 44d064f320c952f4083f7a1c2d10feb5, type: 3}
-  _cost: 2
-  _build_cooldown: 8
+  _shell: {fileID: 2331312971443540086, guid: c90743573f9f58e45aa49529c0b4167d, type: 3}
+  _type: 0
+  _elementCost: 1
+  _cost: 0
+  _build_cooldown: 10
+  _upperTower: 
   _income: 0
-  _max_hp: 5
-  _damage: 1
-  _cooldown: 1.5
-  _shell_speed: 3
+  _max_hp: 6
+  _damage: 0.5
+  _cooldown: 2
+  _shell_speed: 5

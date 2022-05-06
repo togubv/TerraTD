@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
 
     public List<GameObject> mobPool;
 
-    public int waveMobCountMax;
+    public int waveMobCountMax = 3;
     public int waveMobCountCurrent;
     public float minDelay = 4;
     public float maxDelay = 8;
@@ -27,11 +27,11 @@ public class Spawner : MonoBehaviour
     private void StartNewWave()
     {
         Debug.Log("START NEW WAVE");
-        waveMobCountMax += 3;
+        waveMobCountMax += 1;
         waveMobCountCurrent = 0;
         if (minDelay >= 2) minDelay -= 1;
         if (maxDelay >= 1.5f) maxDelay -= 1.5f;
-        if (spawnElements) SpawnEnemies(0);// (Random.Range(0, 4));
+        if (spawnElements) SpawnEnemies(Random.Range(0, 4));
         StartCoroutine(DelaySpawnMob(this.minDelay, this.maxDelay));
     }
 
@@ -65,6 +65,4 @@ public class Spawner : MonoBehaviour
             mobPool.Remove(go);
         }
     }
-
-
 }
