@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flat_R14 : MonoBehaviour
+public class FlatNotDestructible : TowerWeapon
 {
     public List<GameObject> enemies_list;
     public bool attacking;
     private bool isCooldown;
-    private GameObject shell;
-
-    private float speed, damage;
-    private float cooldown;
 
     private void Awake()
     {
@@ -26,7 +22,7 @@ public class Flat_R14 : MonoBehaviour
         if (attacking && !isCooldown)
         {
             GameObject new_shell = Instantiate(shell, transform);
-            new_shell.GetComponent<Shell_controller>().SetStats(speed, damage);
+            new_shell.GetComponent<ShellNotDestructible>().SetStats(speed, damage);
             isCooldown = true;
             StartCoroutine(StartCooldownTimer());
         }

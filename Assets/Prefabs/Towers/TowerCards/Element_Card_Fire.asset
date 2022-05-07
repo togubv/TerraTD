@@ -18,9 +18,13 @@ MonoBehaviour:
   _weapon_type: {fileID: 0}
   _shell: {fileID: 0}
   _type: 2
-  _elementCost: 1
+  _costFire: 1
+  _costWater: 0
+  _costEarth: 0
+  _costAir: 0
   _cost: 0
-  _build_cooldown: 10
+  _build_cooldown: 1
+  _upperTower: 00000000000000000000000000000000
   _income: 0
   _max_hp: 0
   _damage: 0

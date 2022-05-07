@@ -27,42 +27,20 @@ public class GameUI : MonoBehaviour
     private TowerCard[] cardTower;
     private bool isGame;
 
-
-    //[SerializeField] private TowerBuilder tower_builder;
-    //[SerializeField] private LevelManager go_levelManager;
-
-    //[SerializeField] private GameObject goDragging;
-    //[SerializeField] private Text text_bank, text_playerHP;
-    //[SerializeField] private GameObject[] goButtonLevelPool;
-    //[SerializeField] private TowerCard[] tower_card;
-
-    //private Bank bank;
-    //private LevelManager levelManager;
-
-    //private Button[] buttonButtonLevelPool;
-    //private Slider[] sliderButtonLevelPool;
-    //private SpriteRenderer sprR_dragging_tower;
-    //public Image[] imageButtonLevelPool;
-    //[SerializeField] private Sprite[] towerSprite;
-    //private int[] pool;
-    //private bool[] boolButtonCooldown;
-
-    //public Color colorDisabled;
-
     private void Start()
     {
         Initialize();
 
-        for (int i = 0; i < buttonSize; i++)
+        for (int i = 1; i < buttonSize; i++)
         {
             buttonButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Button>();
         }
 
-        towerSprite = new Sprite[cardTower.Length + 1];
+        towerSprite = new Sprite[cardTower.Length];
 
-        for (int i = 0; i < cardTower.Length; i++)
+        for (int i = 1; i < cardTower.Length; i++)
         {
-            towerSprite[i + 1] = cardTower[i].sprite;
+            towerSprite[i] = cardTower[i].sprite;
             imageButtonLevelPool[i].sprite = towerSprite[pool[i]];
         }
 
@@ -90,13 +68,13 @@ public class GameUI : MonoBehaviour
         //towerSprite = tower_builder.towerSprite;
         //boolButtonCooldown = new bool[buttonSize];
 
-        for (int i = 0; i < buttonSize; i++)
+        for (int i = 1; i < buttonSize; i++)
         {
             imageButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Image>();
             //imageButtonLevelPool[i].sprite = towerSprite[pool[i]];
             buttonButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Button>();
             sliderButtonLevelPool[i] = goButtonLevelPool[i].GetComponentInChildren<Slider>();
-            if (i > 1 && i < 6)
+            if (i > 2 && i < 7)
             {
                 buttonButtonLevelPool[i].enabled = false;
                 imageButtonLevelPool[i].enabled = false;
@@ -111,19 +89,19 @@ public class GameUI : MonoBehaviour
 
     private int TakeButtonID(GameObject go)
     {
-        for (int i = 0; i < goButtonLevelPool.Length; i++)
+        for (int i = 1; i < goButtonLevelPool.Length; i++)
         {
             if (go == goButtonLevelPool[i]) return i;
         }
         Debug.Log("GAMEUI: NOT FOUND BUTTON");
-        return -1;
+        return 0;
     }
 
     private void UpdateTowerButtons(object sender, int oldCount, int newCount)
     {
         UpdateCurrentGoldCountUI(newCount);
         //Debug.Log($"Get {newCount} from {sender.GetType()} reward");
-        UpdateButtonsColor(newCount);
+        UpdateTowerButtonsColor(newCount);
     }
 
     private void UpdateCurrentGoldCountUI(int count)
@@ -131,11 +109,11 @@ public class GameUI : MonoBehaviour
         textBank.text = count.ToString();
     }
 
-    private void UpdateButtonsColor(int bankCount)
+    private void UpdateTowerButtonsColor(int bankCount)
     {
-        for (int i = 0; i < goButtonLevelPool.Length; i++)
+        for (int i = 1; i < goButtonLevelPool.Length - 4; i++)
         {
-            if (pool[i] != 0 && cardTower[pool[i] - 1].cost <= bankCount)
+            if (pool[i] != 0 && cardTower[pool[i]].cost <= bankCount)
             {
                 imageButtonLevelPool[i].color = Color.white;
             }
@@ -144,6 +122,30 @@ public class GameUI : MonoBehaviour
                 imageButtonLevelPool[i].color = Color.gray;
             }
         }
+    }
+
+    private void UpdateElementButtonsColor()
+    {
+        for (int i = 7; i < goButtonLevelPool.Length; i++)
+        {
+            if (pool[i] != 0 && CheckElementsCost(i))
+            {
+                imageButtonLevelPool[i].color = Color.white;
+            }
+            else
+            {
+                imageButtonLevelPool[i].color = Color.gray;
+            }
+        }
+    }
+
+    private bool CheckElementsCost(int buttonID)
+    {
+        if (cardTower[buttonID].costFire > bank.countFire) return false;
+        if (cardTower[buttonID].costWater > bank.countWater) return false;
+        if (cardTower[buttonID].costEarth > bank.countEarth) return false;
+        if (cardTower[buttonID].costAir > bank.countAir) return false;
+        return true;
     }
 
     private void UpdatePlayerHPUI(object sender, int oldHP, int newHP)
@@ -201,5 +203,6 @@ public class GameUI : MonoBehaviour
                 textAir.text = newCount.ToString();
                 break;
         }
+        UpdateElementButtonsColor();
     }
 }

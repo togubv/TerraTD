@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
     public float minDelay = 4;
     public float maxDelay = 8;
 
+    private int waveCount;
     private bool spawnElements;
 
     private void Start()
@@ -26,12 +27,13 @@ public class Spawner : MonoBehaviour
 
     private void StartNewWave()
     {
-        Debug.Log("START NEW WAVE");
-        waveMobCountMax += 1;
+        waveCount++;
+        Debug.Log("START WAVE: " + waveCount);
+        waveMobCountMax += 5;
         waveMobCountCurrent = 0;
         if (minDelay >= 2) minDelay -= 1;
         if (maxDelay >= 1.5f) maxDelay -= 1.5f;
-        if (spawnElements) SpawnEnemies(Random.Range(0, 4));
+        if (spawnElements) SpawnEnemies(Random.Range(1, 5));
         StartCoroutine(DelaySpawnMob(this.minDelay, this.maxDelay));
     }
 
@@ -42,7 +44,7 @@ public class Spawner : MonoBehaviour
         {
             float randomDelay = Random.Range(minDelay, maxDelay);
             yield return new WaitForSeconds(randomDelay);
-            SpawnEnemies(4);
+            SpawnEnemies(5);
         }
         StartNewWave();
     }

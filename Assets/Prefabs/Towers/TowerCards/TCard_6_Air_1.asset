@@ -15,10 +15,13 @@ MonoBehaviour:
   _id: 6
   _tower_name: Air Tower
   _sprite: {fileID: 21300000, guid: 9172119860246344eac9b8e7c7671f09, type: 3}
-  _weapon_type: {fileID: 8709304761669737783, guid: bcca58f786bf4d74e91144f00e81ebc2, type: 3}
+  _weapon_type: {fileID: 1962374236657110220, guid: e22784b08ce93824b91ebc1a96cbfefa, type: 3}
   _shell: {fileID: 3817748176197846931, guid: 0b1b3f0db6dac6d4ca8f4daebc9bf823, type: 3}
   _type: 0
-  _elementCost: 1
+  _costFire: 0
+  _costWater: 0
+  _costEarth: 0
+  _costAir: 1
   _cost: 0
   _build_cooldown: 10
   _upperTower: 

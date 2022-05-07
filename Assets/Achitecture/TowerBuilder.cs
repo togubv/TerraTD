@@ -32,8 +32,6 @@ public class TowerBuilder : MonoBehaviour
     public TowerCard[] CardTower => cardTower;
     public int[] Pool => pool;
 
-    
-
     private void Awake()
     {
         goCell = gameScene.GoCell;
@@ -41,7 +39,7 @@ public class TowerBuilder : MonoBehaviour
         goButtonLevelPool = gameScene.GoButtonLevelPool;
         prefabTower = gameScene.PrefabTower;
         cardTower = gameScene.CardTower;
-        builtTower = new GameObject[grid.Length];
+        builtTower = new GameObject[grid.Length];   
     }
 
     private void Update()
@@ -98,8 +96,12 @@ public class TowerBuilder : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 int id = TakegoCell(hit.collider.gameObject);
-                SetElementToTower(draggingTowerID, hit.collider.gameObject, id);
-                isDragElement = false;
+
+                if (grid[id] == neededElementTowerID)
+                {
+                    SetElementToTower(draggingTowerID, hit.collider.gameObject, id);
+                    isDragElement = false;
+                }
             }
         }
         else
@@ -112,10 +114,11 @@ public class TowerBuilder : MonoBehaviour
     public void StartDragging(GameObject go)
     {
         int buttonID = TakeButtonNumber(go);
+        Debug.Log(buttonID);
         if (pool[buttonID] == 0)
             return;
         pressedButton = go;
-        TowerType type = cardTower[pool[buttonID] - 1].type;
+        TowerType type = cardTower[pool[buttonID]].type;
         switch (type)
         {
             case TowerType.Element:
@@ -129,7 +132,7 @@ public class TowerBuilder : MonoBehaviour
 
     public void StartTowerDragging(int buttonID)
     {
-        if (cardTower[pool[buttonID] - 1].cost <= bank.count)
+        if (cardTower[pool[buttonID]].cost <= bank.count)
         {
             draggingTowerID = pool[buttonID];
             StartCoroutine(DragTower());
@@ -148,8 +151,8 @@ public class TowerBuilder : MonoBehaviour
         neededElementTowerID = 2;
         switch (elementID)
         {
-            case 6:
-                if (cardTower[pool[buttonID] - 1].cost <= bank.countFire)
+            case 7:
+                if (cardTower[pool[buttonID]].costFire <= bank.countFire)
                 {
                     StartCoroutine(DragElement());
                 }
@@ -159,8 +162,8 @@ public class TowerBuilder : MonoBehaviour
                     Debug.Log("Fire element is not enough");
                 }
                 break;
-            case 7:
-                if (cardTower[pool[buttonID] - 1].cost <= bank.countWater)
+            case 8:
+                if (cardTower[pool[buttonID]].costWater <= bank.countWater)
                 {
                     StartCoroutine(DragElement());
                 }
@@ -170,8 +173,8 @@ public class TowerBuilder : MonoBehaviour
                     Debug.Log("Water element is not enough");
                 }
                 break;
-            case 8:
-                if (cardTower[pool[buttonID] - 1].cost <= bank.countEarth)
+            case 9:
+                if (cardTower[pool[buttonID]].costEarth <= bank.countEarth)
                 {
                     Debug.Log("pool[buttonID]: " + pool[buttonID]);
                     StartCoroutine(DragElement());
@@ -182,8 +185,8 @@ public class TowerBuilder : MonoBehaviour
                     Debug.Log("Earth element is not enough");
                 }
                 break;
-            case 9:
-                if (cardTower[pool[buttonID] - 1].cost <= bank.countAir)
+            case 10:
+                if (cardTower[pool[buttonID]].costAir <= bank.countAir)
                 {
                     Debug.Log("pool[buttonID]: " + pool[buttonID]);
                     StartCoroutine(DragElement());
@@ -199,12 +202,12 @@ public class TowerBuilder : MonoBehaviour
 
     private int TakeButtonNumber(GameObject go)
     {
-        for (int i = 0; i < goButtonLevelPool.Length; i++)
+        for (int i = 1; i < goButtonLevelPool.Length; i++)
         {
             if (go == goButtonLevelPool[i]) return i;
         }
         Debug.Log("NOT FOUND BUTTON");
-        return -1;
+        return 0;
     }
 
     private IEnumerator DragTower()
@@ -249,20 +252,50 @@ public class TowerBuilder : MonoBehaviour
     private void SetNewTower(int tower_id, GameObject go, int cell_id)
     {
         grid[cell_id] = tower_id;
-        GameObject new_tower = Instantiate(prefabTower[tower_id - 1], go.transform.position, Quaternion.identity, transform);
+        GameObject new_tower = Instantiate(prefabTower[tower_id], go.transform.position, Quaternion.identity, transform);
         new_tower.GetComponent<TowerConfuguration>().SetNumber(cell_id);
-        bank.DecreaseBank(this, prefabTower[tower_id - 1].GetComponent<TowerConfuguration>().Card.cost);
+        bank.DecreaseBank(this, prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.cost);
         builtTower[cell_id] = new_tower;
 
-        StartTowerCooldownEvent?.Invoke(pressedButton, prefabTower[tower_id - 1].GetComponent<TowerConfuguration>().Card.build_cooldown);
-        if (prefabTower[tower_id - 1].GetComponent<TowerConfuguration>().Card.income > 0) bank.IncreaseIncome(this, 1);
+        StartTowerCooldownEvent?.Invoke(pressedButton, prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.build_cooldown);
+        if (prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.income > 0) bank.IncreaseIncome(this, 1);
     }
 
     private void SetElementToTower(int elementID, GameObject go, int cell_id)
     {
         int replacedCellID = grid[cell_id];
         RemoveTowerFromGame(cell_id, 0);
-        SetNewTower(cardTower[replacedCellID - 1].upperTower[elementID - 6], go, cell_id);
+        int towerCard = cardTower[replacedCellID].upperTower[elementID - 7];
+
+        SetNewTower(towerCard, go, cell_id);
+        int eleCount = TakeElementCostCount(towerCard);
+        bank.DecreaseElementCount(this, elementID - 6, eleCount);
+    }
+
+    private int TakeElementCostCount(int id)
+    {
+        TowerCard towerCard = cardTower[id];
+        if (towerCard.costFire > 0)
+        {
+            Debug.Log(towerCard.costFire);
+            return towerCard.costFire;
+        }
+        if (towerCard.costWater > 0)
+        {
+            Debug.Log(towerCard.costWater);
+            return towerCard.costWater;
+        }
+        if (towerCard.costEarth > 0)
+        {
+            Debug.Log(towerCard.costEarth);
+            return towerCard.costEarth;
+        }
+        if (towerCard.costAir > 0)
+        {
+            Debug.Log(towerCard.costAir);
+            return towerCard.costAir;
+        }
+        return 0;
     }
 
     private int TakegoCell(GameObject go)
@@ -273,7 +306,7 @@ public class TowerBuilder : MonoBehaviour
         }
         Debug.Log("NOT FOUND GO NUMBER IN ARRAY");
         isDragTower = false;
-        return -1;
+        return 0;
     }
 
     private void RemoveTowerFromGame(int cellID, int cashBack)

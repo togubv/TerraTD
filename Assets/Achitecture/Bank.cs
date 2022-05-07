@@ -16,7 +16,7 @@ public class Bank : MonoBehaviour
     public delegate void IncomeUpdateHandler(object sender, int oldIncome, int newIncome);
     public event IncomeUpdateHandler IncomeUpdateHandlerEvent;
 
-    public delegate void ElementCountUpdateHandler(object sender, int elementID, int oldIncome, int newIncome);
+    public delegate void ElementCountUpdateHandler(object sender, int elementID, int oldCount, int newCount);
     public event ElementCountUpdateHandler ElementCountUpdateHandlerEvent;
 
     public void IncreaseBank(object sender, int count)
@@ -85,6 +85,51 @@ public class Bank : MonoBehaviour
                 break;
         }
         
+    }
+
+    public void DecreaseElementCount(object sender, int elementID, int count)
+    {
+        int oldCount = 0;
+        int newCount = 0;
+        switch (elementID)
+        {
+            case 1:
+                if (this.countFire >= count)
+                {
+                    oldCount = this.countFire;
+                    this.countFire -= count;
+                    newCount = this.countFire;
+                }
+                break;
+            case 2:
+                if (this.countWater >= count)
+                {
+                    oldCount = this.countWater;
+                    this.countWater -= count;
+                    newCount = this.countWater;
+                }
+                break;
+            case 3:
+                if (this.countEarth >= count)
+                {
+                    oldCount = this.countEarth;
+                    this.countEarth -= count;
+                    newCount = this.countEarth;
+                }
+                break;
+            case 4:
+                if (this.countAir >= count)
+                {
+                    oldCount = this.countAir;
+                    this.countAir -= count;
+                    newCount = this.countAir;
+                }
+                break;
+        }
+
+        this.ElementCountUpdateHandlerEvent?.Invoke(sender, elementID, oldCount, newCount);
+        Debug.Log($"from {sender} take {elementID} count: {count}");
+
     }
 
     public bool CheckBankSize(int decreaseCount)

@@ -15,10 +15,13 @@ MonoBehaviour:
   _id: 5
   _tower_name: Earth Tower
   _sprite: {fileID: 21300000, guid: 2712a8ab3f5a1e848b081a87cae9f90d, type: 3}
-  _weapon_type: {fileID: 8709304761669737783, guid: bcca58f786bf4d74e91144f00e81ebc2, type: 3}
+  _weapon_type: {fileID: 8448567956371048706, guid: 2a1b77583dfbd954ba0b704ee3506f1c, type: 3}
   _shell: {fileID: 8644711076842968063, guid: 9a067b2537954b34783f3b75be5d933e, type: 3}
   _type: 0
-  _elementCost: 1
+  _costFire: 0
+  _costWater: 0
+  _costEarth: 1
+  _costAir: 0
   _cost: 0
   _build_cooldown: 10
   _upperTower: 

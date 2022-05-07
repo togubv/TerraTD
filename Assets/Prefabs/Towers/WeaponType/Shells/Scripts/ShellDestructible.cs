@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shell_controller : MonoBehaviour
+public class ShellDestructible : Shell
 {
-    private float speed, damage;
-
     private void Start()
     {
         Destroy(gameObject, 10.0f);    
     }
 
-    public void SetStats(float speed, float damage)
+    public void SetStats(float newSpeed, float newDamage)
     {
-        this.speed = speed;
-        this.damage = damage;
+        speed = newSpeed;
+        damage = newDamage;
     }
 
     private void FixedUpdate()
@@ -26,12 +24,17 @@ public class Shell_controller : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Mob"))
         {
-            Damage(collider.gameObject);
-            Destroy(gameObject);
+            DamageTarget(collider);
         }
     }
 
-    private void Damage(GameObject go)
+    protected void DamageTarget(Collider2D collider)
+    {
+        Damage(collider.gameObject);
+        Destroy(gameObject);
+    }
+
+    protected void Damage(GameObject go)
     {
         go.GetComponent<IDamageable>().ApplyDamage(damage);
     }

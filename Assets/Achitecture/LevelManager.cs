@@ -10,6 +10,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject tower_builder;
 
     [Header("Level settings")]
+    [SerializeField] private int startFire;
+    [SerializeField] private int startWater;
+    [SerializeField] private int startEarth;
+    [SerializeField] private int startAir;
     [SerializeField] private int startMoney;
     [SerializeField] private int startHP;
     [SerializeField] private int startIncome;
@@ -34,21 +38,26 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(DelayedStart());
+    }
+
+    private void StartLevel()
+    {
         bank.IncreaseBank(this, startMoney);
         bank.IncreaseIncome(this, startIncome);
         IncreasePlayerHP(this, startHP);
         isGame = true;
         StartCoroutine(UpdateIncome());
+        bank.IncreaseElementCount(this, 1, startFire);
+        bank.IncreaseElementCount(this, 2, startWater);
+        bank.IncreaseElementCount(this, 3, startEarth);
+        bank.IncreaseElementCount(this, 4, startAir);
     }
 
-    public void EndDraft()
+    private IEnumerator DelayedStart()
     {
-        //tower_prefab_list = tower_draft.Towers_list;
-        //pool = tower_draft.Pool;
-
-        //tower_builder.SetActive(true);
-        //canvas_draft.SetActive(false);
-        //canvas_gameUI.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        StartLevel();
     }
 
     public void IncreasePlayerHP(object sender, int count)

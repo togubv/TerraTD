@@ -15,10 +15,13 @@ MonoBehaviour:
   _id: 4
   _tower_name: Water Tower
   _sprite: {fileID: 21300000, guid: 29b3ff18bd021ff4d8a5a51612108c11, type: 3}
-  _weapon_type: {fileID: 8709304761669737783, guid: bcca58f786bf4d74e91144f00e81ebc2, type: 3}
+  _weapon_type: {fileID: 8448567956371048706, guid: 2a1b77583dfbd954ba0b704ee3506f1c, type: 3}
   _shell: {fileID: 2331312971443540086, guid: c90743573f9f58e45aa49529c0b4167d, type: 3}
   _type: 0
-  _elementCost: 1
+  _costFire: 0
+  _costWater: 1
+  _costEarth: 0
+  _costAir: 0
   _cost: 0
   _build_cooldown: 10
   _upperTower: 

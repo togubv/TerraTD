@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8709304761669737783
+--- !u!1 &1962374236657110220
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5957795649820397370}
-  - component: {fileID: 8283800509769845536}
-  - component: {fileID: 3979709399793999135}
+  - component: {fileID: 3551156347394039489}
+  - component: {fileID: 1230488602776574683}
+  - component: {fileID: 6096724574921764105}
   m_Layer: 2
-  m_Name: TWeapon_Flat_R14
+  m_Name: TWeaponFlatNotDestructible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5957795649820397370
+--- !u!4 &3551156347394039489
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709304761669737783}
+  m_GameObject: {fileID: 1962374236657110220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &8283800509769845536
+--- !u!61 &1230488602776574683
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709304761669737783}
+  m_GameObject: {fileID: 1962374236657110220}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -59,16 +59,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3979709399793999135
+--- !u!114 &6096724574921764105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709304761669737783}
+  m_GameObject: {fileID: 1962374236657110220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b6274992a1a1ed4189ec45635498df9, type: 3}
+  m_Script: {fileID: 11500000, guid: 837b6b9c7fbcda74990e810fa57b6987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemies_list: []

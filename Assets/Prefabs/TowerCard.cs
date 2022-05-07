@@ -10,7 +10,10 @@ public class TowerCard : ScriptableObject
     [SerializeField] private GameObject _shell;
     [Header("Build")]
     [SerializeField] private TowerType _type;
-    [SerializeField] private int _elementCost;
+    [SerializeField] private int _costFire;
+    [SerializeField] private int _costWater;
+    [SerializeField] private int _costEarth;
+    [SerializeField] private int _costAir;
     [SerializeField] private int _cost;
     [SerializeField] private float _build_cooldown;
     [Header("Up level")]
@@ -28,7 +31,10 @@ public class TowerCard : ScriptableObject
     public GameObject weapon_type => _weapon_type;
     public GameObject shell => _shell;
     public TowerType type => _type;
-    public int elementCost => _elementCost;
+    public int costFire => _costFire;
+    public int costWater => _costWater;
+    public int costEarth => _costEarth;
+    public int costAir => _costAir;
     public int cost => _cost;
     public float build_cooldown => _build_cooldown;
     public int[] upperTower => _upperTower;
