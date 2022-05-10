@@ -17,6 +17,7 @@ public class TowerCard : ScriptableObject
     [SerializeField] private int _cost;
     [SerializeField] private float _build_cooldown;
     [Header("Up level")]
+    [SerializeField] private int _initialTower;
     [SerializeField] private int[] _upperTower = new int[4];
     [Header("Stats")]
     [SerializeField] private int _income;
@@ -37,6 +38,7 @@ public class TowerCard : ScriptableObject
     public int costAir => _costAir;
     public int cost => _cost;
     public float build_cooldown => _build_cooldown;
+    public int initialTower => _initialTower;
     public int[] upperTower => _upperTower;
     public int income => _income;
     public float max_hp => _max_hp;

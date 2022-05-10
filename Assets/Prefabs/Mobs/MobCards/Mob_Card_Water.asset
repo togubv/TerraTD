@@ -19,5 +19,5 @@ MonoBehaviour:
   _speed: 0.5
   _damage: 1
   _cooldown: 1.5
-  _rewardElementID: 2
+  _rewardElementID: 1
   _rewardCount: 1

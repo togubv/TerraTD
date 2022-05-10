@@ -9,16 +9,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4889498865982673184, guid: 22be730bfa9b7984981bbfe1b1a14c47, type: 3}
       propertyPath: m_Name
-      value: Tower_1 Variant
+      value: Tower_1_Miner
       objectReference: {fileID: 0}
     - target: {fileID: 4889498865982673184, guid: 22be730bfa9b7984981bbfe1b1a14c47, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4889498865982673186, guid: 22be730bfa9b7984981bbfe1b1a14c47, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: fbf17b8a59327204e8c6b73f79617788, type: 3}
+    - target: {fileID: 4889498865982673186, guid: 22be730bfa9b7984981bbfe1b1a14c47, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4889498865982673187, guid: 22be730bfa9b7984981bbfe1b1a14c47, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.9375

@@ -48,10 +48,10 @@ public class LevelManager : MonoBehaviour
         IncreasePlayerHP(this, startHP);
         isGame = true;
         StartCoroutine(UpdateIncome());
-        bank.IncreaseElementCount(this, 1, startFire);
-        bank.IncreaseElementCount(this, 2, startWater);
-        bank.IncreaseElementCount(this, 3, startEarth);
-        bank.IncreaseElementCount(this, 4, startAir);
+        bank.IncreaseElementCount(this, 0, startFire);
+        bank.IncreaseElementCount(this, 1, startWater);
+        bank.IncreaseElementCount(this, 2, startEarth);
+        bank.IncreaseElementCount(this, 3, startAir);
     }
 
     private IEnumerator DelayedStart()

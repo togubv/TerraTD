@@ -50,9 +50,9 @@ public class MobConfiguration : Unit
 
     public override void Die()
     {
-        if (card.rewardElementID != 0)
+        if (card.rewardCount != 0)
         {
-            bank.IncreaseElementCount(this, card.rewardElementID, 1);
+            bank.IncreaseElementCount(this, card.rewardElementID, card.rewardCount);
         }
         spawner.RemoveMobFromMobPool(gameObject);
         //Debug.Log("MOB DIED!");

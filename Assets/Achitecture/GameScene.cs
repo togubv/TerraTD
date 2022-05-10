@@ -6,6 +6,7 @@ public class GameScene : MonoBehaviour
     protected GameObject[] goButtonDraft;
     protected GameObject[] goButtonDraftPool;
     [SerializeField] private GameObject[] goButtonLevelPool;
+    [SerializeField] private GameObject[] goUpgradeButton;
     [SerializeField] private GameObject[] prefabTower;
     [SerializeField] private GameObject[] prefabMob;
     [SerializeField] private TowerCard[] cardTower;
@@ -13,6 +14,7 @@ public class GameScene : MonoBehaviour
     [SerializeField] private GameObject[] goCell;
 
     public GameObject[] GoButtonLevelPool => goButtonLevelPool;
+    public GameObject[] GoUpgradeButton => goUpgradeButton;
     public GameObject[] PrefabTower => prefabTower;
     public GameObject[] PrefabMob => prefabMob;
     public TowerCard[] CardTower => cardTower;

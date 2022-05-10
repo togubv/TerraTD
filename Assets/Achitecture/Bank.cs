@@ -63,22 +63,22 @@ public class Bank : MonoBehaviour
         int oldCount = 0;
         switch (elementID)
         {
-            case 1:
+            case 0:
                 oldCount = this.countFire;
                 this.countFire += count;
                 this.ElementCountUpdateHandlerEvent?.Invoke(sender, elementID, oldCount, this.countFire);
                 break;
-            case 2:
+            case 1:
                 oldCount = this.countWater;
                 this.countWater += count;
                 this.ElementCountUpdateHandlerEvent?.Invoke(sender, elementID, oldCount, this.countWater);
                 break;
-            case 3:
+            case 2:
                 oldCount = this.countEarth;
                 this.countEarth += count;
                 this.ElementCountUpdateHandlerEvent?.Invoke(sender, elementID, oldCount, this.countEarth);
                 break;
-            case 4:
+            case 3:
                 oldCount = this.countAir;
                 this.countAir += count;
                 this.ElementCountUpdateHandlerEvent?.Invoke(sender, elementID, oldCount, this.countAir);
@@ -93,7 +93,7 @@ public class Bank : MonoBehaviour
         int newCount = 0;
         switch (elementID)
         {
-            case 1:
+            case 0:
                 if (this.countFire >= count)
                 {
                     oldCount = this.countFire;
@@ -101,7 +101,7 @@ public class Bank : MonoBehaviour
                     newCount = this.countFire;
                 }
                 break;
-            case 2:
+            case 1:
                 if (this.countWater >= count)
                 {
                     oldCount = this.countWater;
@@ -109,7 +109,7 @@ public class Bank : MonoBehaviour
                     newCount = this.countWater;
                 }
                 break;
-            case 3:
+            case 2:
                 if (this.countEarth >= count)
                 {
                     oldCount = this.countEarth;
@@ -117,7 +117,7 @@ public class Bank : MonoBehaviour
                     newCount = this.countEarth;
                 }
                 break;
-            case 4:
+            case 3:
                 if (this.countAir >= count)
                 {
                     oldCount = this.countAir;

@@ -13,18 +13,23 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Slider sliderIncome;
     [SerializeField] private Text textBank, textPlayerHP, textIncome;
     [SerializeField] private Text textFire, textWater, textEarth, textAir;
+    [SerializeField] private GameObject canvasUpgrade;
+    [SerializeField] private Transform transformUpgradeButtons;
+    [SerializeField] private GameObject[] upgradeButton;
 
     private Bank bank;
     private Slider[] sliderButtonLevelPool;
     private GameObject[] goButtonLevelPool;
     private Button[] buttonButtonLevelPool;
     private Image[] imageButtonLevelPool;
+    private Image[] imageUpgradeButton;
     private SpriteRenderer sprR_dragging_tower;
     private int buttonSize;
     //private bool[] boolButtonCooldown;
     private int[] pool;
-    private Sprite[] towerSprite;
-    private TowerCard[] cardTower;
+    private int[] upgradeButtonID;
+    [SerializeField] private Sprite[] towerSprite;
+    [SerializeField] private TowerCard[] cardTower;
     private bool isGame;
 
     private void Start()
@@ -40,8 +45,19 @@ public class GameUI : MonoBehaviour
 
         for (int i = 1; i < cardTower.Length; i++)
         {
-            towerSprite[i] = cardTower[i].sprite;
+            towerSprite[i] = cardTower[i].sprite;            
+        }
+
+        for (int i = 1; i < imageButtonLevelPool.Length; i++)
+        {
             imageButtonLevelPool[i].sprite = towerSprite[pool[i]];
+        }
+
+        imageUpgradeButton = new Image[upgradeButton.Length];
+        upgradeButtonID = new int[upgradeButton.Length];
+        for (int i = 0; i < upgradeButton.Length; i++)
+        {
+            imageUpgradeButton[i] = upgradeButton[i].GetComponent<Image>();
         }
 
         bank = levelManager.GetComponent<Bank>();
@@ -52,6 +68,7 @@ public class GameUI : MonoBehaviour
         bank.ElementCountUpdateHandlerEvent += UpdateElements;
         levelManager.PlayerHPHandlerEvent += UpdatePlayerHPUI;
         towerBuilder.StartTowerCooldownEvent += StartboolButtonCooldownAnimation;
+        towerBuilder.ClickToBuiltTowerHandlerEvent += ShowUpgradeWindow;
         StartCoroutine(SliderIncomeValue());
     }
 
@@ -124,17 +141,18 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private void UpdateElementButtonsColor()
+    private void UpdateElementButtonsColor(int[] updateButton)
     {
-        for (int i = 7; i < goButtonLevelPool.Length; i++)
+        upgradeButtonID = updateButton;
+        for (int i = 0; i < imageUpgradeButton.Length; i++)
         {
-            if (pool[i] != 0 && CheckElementsCost(i))
+            if (updateButton[i] != 0 && CheckElementsCost(updateButton[i]))
             {
-                imageButtonLevelPool[i].color = Color.white;
+                imageUpgradeButton[i].color = Color.white;
             }
             else
             {
-                imageButtonLevelPool[i].color = Color.gray;
+                imageUpgradeButton[i].color = Color.gray;
             }
         }
     }
@@ -162,9 +180,12 @@ public class GameUI : MonoBehaviour
     {
         int i = TakeButtonID(go);
         //boolButtonCooldown[i] = true;
-        go.GetComponent<Animator>().speed = 1 / cooldown;
-        go.GetComponent<Animator>().SetTrigger("CooldownAnimation");
-        StartCoroutine(Cooldown(i, cooldown));
+        if (i != 0)
+        {
+            go.GetComponent<Animator>().speed = 1 / cooldown;
+            go.GetComponent<Animator>().SetTrigger("CooldownAnimation");
+            StartCoroutine(Cooldown(i, cooldown));
+        }
     }
 
     private IEnumerator Cooldown(int i, float cooldown)
@@ -188,21 +209,50 @@ public class GameUI : MonoBehaviour
 
     private void UpdateElements(object sender, int elementID, int oldCount, int newCount)
     {
-        switch(elementID)
+        switch (elementID)
         {
-            case 1:
+            case 0:
                 textFire.text = newCount.ToString();
                 break;
-            case 2:
+            case 1:
                 textWater.text = newCount.ToString();
                 break;
-            case 3:
+            case 2:
                 textEarth.text = newCount.ToString();
                 break;
-            case 4:
+            case 3:
                 textAir.text = newCount.ToString();
                 break;
         }
-        UpdateElementButtonsColor();
+        UpdateElementButtonsColor(upgradeButtonID);
     }
+
+    public void ShowUpgradeWindow(GameObject go, int[] countUpgrades)
+    {
+        if (go != null)
+        {
+            upgradeButtonID = countUpgrades;
+            UpdateElementButtonsColor(upgradeButtonID);
+            for (int i = 0; i < upgradeButton.Length; i++)
+            {
+                if (countUpgrades[i] == 0)
+                {
+                    upgradeButton[i].SetActive(false);
+                }
+                else
+                {
+                    imageUpgradeButton[i].sprite = towerSprite[countUpgrades[i]];
+                    upgradeButton[i].SetActive(true);
+                }
+            }
+            canvasUpgrade.SetActive(true);
+            transformUpgradeButtons.position = go.transform.position;
+        }
+        else
+        {
+            canvasUpgrade.SetActive(false);
+        }
+    }
+
+
 }
