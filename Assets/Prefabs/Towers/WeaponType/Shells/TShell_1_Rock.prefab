@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8292848842311638924}
   - component: {fileID: 2632315473628311585}
   - component: {fileID: 7445750793886809457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TShell_1_Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

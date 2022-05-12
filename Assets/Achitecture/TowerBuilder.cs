@@ -9,22 +9,20 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private Bank bank;
     [Header("Game objects")]
     [SerializeField] private GameObject dragging_go;
+    [SerializeField] private int[] pool;
 
     private GameObject[] goButtonLevelPool;
-    private GameObject[] goUpgradeButton;
     private GameObject[] prefabTower;
-    [SerializeField] private TowerCard[] cardTower;
-    [SerializeField] private int[] pool;
-    [SerializeField] private int[] grid;
+    private TowerCard[] cardTower;
+    private int[] grid;
     private GameObject[] goCell;
 
     private int draggingTowerID;
-    [SerializeField] private int neededElementTowerID;
-    [SerializeField] private int targetedCell;
+    private int targetedCell;
     private bool isDragTower;
-    private bool isUpgrade;
     private GameObject pressedButton;
     [SerializeField] private GameObject[] builtTower;
+    private BuildBehaviour buildBehaviour;
 
     public delegate void StartTowerCooldown(GameObject go, float duration);
     public event StartTowerCooldown StartTowerCooldownEvent;
@@ -41,34 +39,39 @@ public class TowerBuilder : MonoBehaviour
         goCell = gameScene.GoCell;
         grid = new int[goCell.Length];
         goButtonLevelPool = gameScene.GoButtonLevelPool;
-        goUpgradeButton = gameScene.GoUpgradeButton;
         prefabTower = gameScene.PrefabTower;
         cardTower = gameScene.CardTower;
-        builtTower = new GameObject[grid.Length];   
+        builtTower = new GameObject[grid.Length];
+        SwitchBuilderBehaivour(BuildBehaviour.Game);
     }
 
     private void Update()
     {
-        if (!isDragTower && !isUpgrade && Input.GetMouseButtonDown(0))
+        Debug.Log(buildBehaviour.ToString());
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
-
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] != 0)
+            switch(((int)buildBehaviour))
             {
-                isUpgrade = true;
-                targetedCell = TakegoCell(hit.collider.gameObject);
-                ClickToBuiltTowerHandlerEvent?.Invoke(hit.collider.gameObject, TakeCountOfUpgradesTower(hit.collider.gameObject));
-            }
-            else
-            {
-                HideUpgradeWindow();
+                case 0:
+                    ClickToTower();
+                    //Debug.Log("GAME");
+                    break;
+                case 1:
+                    ClickToCellForBuild();
+                    //Debug.Log("BUILD");
+                    break;
+                case 2:
+                    //Debug.Log("UPGRADE");
+                    break;
+                case 3:
+                    RemoveClickedTower();
+                    //Debug.Log("REMOVE");
+                    break;
             }
         }
 
         if (isDragTower)
         {
-            HideUpgradeWindow();
             IsDragTower();
         }
 
@@ -87,21 +90,69 @@ public class TowerBuilder : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] == 0)
         {
             dragging_go.transform.position = hit.collider.transform.position;
-            if (Input.GetMouseButtonDown(0))
-            {
-                int id = TakegoCell(hit.collider.gameObject);
-                if (grid[id] == 0)
-                {
-                    SetNewTower(draggingTowerID, id);
-                    isDragTower = false;
-                }
-            }
+            
         }
         else
         {
             dragging_go.transform.position = cursor;
-            return;
         }
+    }
+
+    private void ClickToTower()
+    {
+        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] != 0)
+        {
+            SwitchBuilderBehaivour(BuildBehaviour.Upgrade);
+            targetedCell = TakegoCell(hit.collider.gameObject);
+            ClickToBuiltTowerHandlerEvent?.Invoke(hit.collider.gameObject, TakeCountOfUpgradesTower(hit.collider.gameObject));
+        }
+        else
+        {
+            HideUpgradeWindow();
+        }
+    }
+
+    private void ClickToCellForBuild()
+    {
+        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone"))
+        {
+            int id = TakegoCell(hit.collider.gameObject);
+            if (grid[id] == 0)
+            {
+                SetNewTower(draggingTowerID, id);
+                isDragTower = false;
+                SwitchBuilderBehaivour(BuildBehaviour.Game);
+            }
+        }
+        
+    }
+
+    private void RemoveClickedTower()
+    {
+        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone"))
+        {
+            int id = TakegoCell(hit.collider.gameObject);
+            if (grid[id] != 0)
+            {
+                RemoveTowerFromGame(id, 0);
+            }
+        }
+        SwitchBuilderBehaivour(BuildBehaviour.Game);
+    }
+
+    public void StartRemovingTower()
+    {
+        if (buildBehaviour == BuildBehaviour.Remove) SwitchBuilderBehaivour(BuildBehaviour.Game);
+        else SwitchBuilderBehaivour(BuildBehaviour.Remove);
     }
 
     public void StartDragging(GameObject go)
@@ -137,8 +188,10 @@ public class TowerBuilder : MonoBehaviour
 
     private void StartDrag()
     {
+        HideUpgradeWindow();
         dragging_go.SetActive(true);
         isDragTower = true;
+        SwitchBuilderBehaivour(BuildBehaviour.Build);
     }
 
     private void BreakDrag()
@@ -195,10 +248,10 @@ public class TowerBuilder : MonoBehaviour
     }
 
     private void HideUpgradeWindow()
-    {
-        isUpgrade = false;
+    { 
         targetedCell = 0;
         ClickToBuiltTowerHandlerEvent?.Invoke(null, null);
+        SwitchBuilderBehaivour(BuildBehaviour.Game);
     }
 
     private int[] TakeCountOfUpgradesTower(GameObject go)
@@ -267,4 +320,17 @@ public class TowerBuilder : MonoBehaviour
         }
         return false;
     }
+
+    private void SwitchBuilderBehaivour(BuildBehaviour behaviour)
+    {
+        buildBehaviour = behaviour;
+    }
+}
+
+public enum BuildBehaviour
+{
+    Game,
+    Build,
+    Upgrade,
+    Remove
 }

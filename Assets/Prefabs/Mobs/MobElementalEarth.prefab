@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1759827158829655417}
   - component: {fileID: 1759827158829655414}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 45286052cdc72554eb18acaccdd1f43f, type: 3}
   m_Color: {r: 0, g: 1, b: 0.020182133, a: 1}
   m_FlipX: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6271604962471933949}
   - component: {fileID: 8786687016888466728}
   - component: {fileID: 3982579224023087787}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: MobElementalEarth
   m_TagString: Mob
   m_Icon: {fileID: 0}

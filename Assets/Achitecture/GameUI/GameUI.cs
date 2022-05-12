@@ -7,7 +7,7 @@ public class GameUI : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private TowerBuilder towerBuilder;
-    //[SerializeField] private GameScene gameScene;
+    [SerializeField] private GameScene gameScene;
     [Header("Game objects")]
     [SerializeField] private GameObject goDragging;
     [SerializeField] private Slider sliderIncome;
@@ -75,8 +75,8 @@ public class GameUI : MonoBehaviour
     private void Initialize()
     {
         pool = towerBuilder.Pool;
-        goButtonLevelPool = towerBuilder.GoButtonLevelPool;
-        cardTower = towerBuilder.CardTower;
+        goButtonLevelPool = gameScene.GoButtonLevelPool;
+        cardTower = gameScene.CardTower;
         //goButtonLevelPool = towerBuilder.GoButtonLevelPool;
         buttonSize = goButtonLevelPool.Length;
         imageButtonLevelPool = new Image[buttonSize];
@@ -253,6 +253,4 @@ public class GameUI : MonoBehaviour
             canvasUpgrade.SetActive(false);
         }
     }
-
-
 }

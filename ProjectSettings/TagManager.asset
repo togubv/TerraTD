@@ -18,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
+  - Shell
   - 
-  - 
-  - 
+  - Mob
   - 
   - 
   - 
@@ -45,13 +45,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: New Layer 1
-    uniqueID: 1666343473
-    locked: 0
-  - name: New Layer 2
-    uniqueID: 469288319
-    locked: 0
-  - name: New Layer 3
-    uniqueID: 3393022205
     locked: 0

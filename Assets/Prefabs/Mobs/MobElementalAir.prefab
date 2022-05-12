@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3697600025491504019}
   - component: {fileID: 2137276419674108230}
   - component: {fileID: 5989016102220150469}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: MobElementalAir
   m_TagString: Mob
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8950233178601318679}
   - component: {fileID: 8950233178601318680}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 45286052cdc72554eb18acaccdd1f43f, type: 3}
   m_Color: {r: 0.52224994, g: 0.639267, b: 0.6792453, a: 1}
   m_FlipX: 0

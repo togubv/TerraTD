@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6972360451282015130}
   - component: {fileID: 3986545539909565495}
   - component: {fileID: 4649552696156101768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TShell_5_Air
   m_TagString: Untagged
   m_Icon: {fileID: 0}

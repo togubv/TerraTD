@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1440335403029813315}
   - component: {fileID: 4396845154705199766}
   - component: {fileID: 8336401104603092245}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: MobElementalFire
   m_TagString: Mob
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6672091011819621063}
   - component: {fileID: 6672091011819621064}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 215148093, guid: b4e4132321aa55f44add3df0554375e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

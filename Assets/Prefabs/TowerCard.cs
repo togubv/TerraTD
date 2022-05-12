@@ -25,6 +25,7 @@ public class TowerCard : ScriptableObject
     [SerializeField] private float _damage;
     [SerializeField] private float _cooldown;
     [SerializeField] private float _shell_speed;
+    [SerializeField] private float _shell_radius;
 
     public int id => _id;
     public string tower_name => _tower_name;
@@ -45,6 +46,7 @@ public class TowerCard : ScriptableObject
     public float damage => _damage;
     public float cooldown => _cooldown;
     public float shell_speed => _shell_speed;
+    public float shell_radius => _shell_radius;
 }
 
 public enum TowerType
