@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShellDestructible : Shell
 {
+    private bool isDestroyed;
+
     private void Start()
     {
         Destroy(gameObject, 10.0f);
@@ -23,8 +25,9 @@ public class ShellDestructible : Shell
 
     protected void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Mob"))
+        if (collider.gameObject.CompareTag("Mob") && !isDestroyed)
         {
+            isDestroyed = true;
             DamageTarget(collider);
         }
     }

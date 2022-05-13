@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class ShellDestructibleAOE : Shell
 {
+    private bool isDestroyed;
+
     private float radius;
     private Collider2D[] hitColliders;
 
-    private void Start()
+    private void Awake()
     {
         radius = 1.0f;
         Destroy(gameObject, 10.0f);
@@ -27,8 +29,9 @@ public class ShellDestructibleAOE : Shell
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Mob"))
+        if (collider.gameObject.CompareTag("Mob") && !isDestroyed)
         {
+            isDestroyed = true;
             DamageTarget(collider);
         }
     }
@@ -39,7 +42,7 @@ public class ShellDestructibleAOE : Shell
         hitColliders =  Physics2D.OverlapCircleAll(collider.transform.position, radius, 1 << 10);
         foreach (Collider2D col in hitColliders)
         {
-                Damage(col.gameObject);
+            Damage(col.gameObject);
         }
         StartCoroutine(DelayedDestroy());
     }
@@ -53,7 +56,6 @@ public class ShellDestructibleAOE : Shell
     {
         anim.SetTrigger("Destroying");
         yield return new WaitForSeconds(0.2f);
-        
         Destroy(gameObject);
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   _mob_name: 
   _sprite: {fileID: 0}
   _max_hp: 5
-  _speed: 0.5
+  _speed: 0.4
   _damage: 1
   _cooldown: 1.5
   _rewardElementID: 3

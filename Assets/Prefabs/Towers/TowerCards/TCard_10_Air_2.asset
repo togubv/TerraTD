@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c59cc0821cdd8f4188672f2ade365cd, type: 3}
   m_Name: TCard_10_Air_2
   m_EditorClassIdentifier: 
-  _id: 0
+  _id: 10
   _tower_name: 
   _sprite: {fileID: 21300000, guid: c822ee4136beba94580ec05b243ce344, type: 3}
   _weapon_type: {fileID: 1962374236657110220, guid: e22784b08ce93824b91ebc1a96cbfefa, type: 3}
@@ -31,3 +31,4 @@ MonoBehaviour:
   _damage: 1
   _cooldown: 1
   _shell_speed: 5
+  _shell_radius: 0

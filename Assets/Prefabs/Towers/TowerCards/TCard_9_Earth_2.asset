@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c59cc0821cdd8f4188672f2ade365cd, type: 3}
   m_Name: TCard_9_Earth_2
   m_EditorClassIdentifier: 
-  _id: 0
+  _id: 9
   _tower_name: 
   _sprite: {fileID: 21300000, guid: 1901ff9d4e697dd49b5bb28a9d73f66e, type: 3}
   _weapon_type: {fileID: 7623071434365254662, guid: fb1b1f899ceb75244bfac6ae57040456, type: 3}
