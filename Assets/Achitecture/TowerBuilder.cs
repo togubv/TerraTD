@@ -11,28 +11,25 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private GameObject dragging_go;
     [SerializeField] private int[] pool;
 
+    public GameObject[] GoButtonLevelPool => goButtonLevelPool;
+    public TowerCard[] CardTower => cardTower;
+    public int[] Pool => pool;
+
+    private BuildBehaviour buildBehaviour;
     private GameObject[] goButtonLevelPool;
     private GameObject[] prefabTower;
     private TowerCard[] cardTower;
     private int[] grid;
     private GameObject[] goCell;
-
     private int draggingTowerID;
     private int targetedCell;
-    private bool isDragTower;
     private GameObject pressedButton;
     [SerializeField] private GameObject[] builtTower;
-    private BuildBehaviour buildBehaviour;
 
     public delegate void StartTowerCooldown(GameObject go, float duration);
     public event StartTowerCooldown StartTowerCooldownEvent;
-
     public delegate void ClickToBuiltTowerHandler(GameObject go, int[] countUpgrades);
     public event ClickToBuiltTowerHandler ClickToBuiltTowerHandlerEvent;
-
-    public GameObject[] GoButtonLevelPool => goButtonLevelPool;
-    public TowerCard[] CardTower => cardTower;
-    public int[] Pool => pool;
 
     private void Awake()
     {
@@ -69,17 +66,16 @@ public class TowerBuilder : MonoBehaviour
                     break;
             }
         }
-
-        if (isDragTower)
-        {
-            IsDragTower();
-        }
-
+        
         if (Input.GetMouseButtonDown(1))
         {
-            isDragTower = false;
-            HideUpgradeWindow();
+            BackToGameBehaviour();
         }
+
+        if (buildBehaviour == BuildBehaviour.Build)
+        {
+            IsDragTower();
+        }        
     }
 
     private void IsDragTower()
@@ -96,6 +92,12 @@ public class TowerBuilder : MonoBehaviour
         {
             dragging_go.transform.position = cursor;
         }
+    }
+
+    private void BackToGameBehaviour()
+    {
+        buildBehaviour = BuildBehaviour.Game;
+        HideUpgradeWindow();
     }
 
     private void ClickToTower()
@@ -126,7 +128,7 @@ public class TowerBuilder : MonoBehaviour
             if (grid[id] == 0)
             {
                 SetNewTower(draggingTowerID, id);
-                isDragTower = false;
+                buildBehaviour = BuildBehaviour.Game;
                 SwitchBuilderBehaivour(BuildBehaviour.Game);
             }
         }
@@ -161,7 +163,6 @@ public class TowerBuilder : MonoBehaviour
         Debug.Log("buttonID: " + buttonID);
         if (pool[buttonID] == 0) return;
         pressedButton = go;
-        TowerType type = cardTower[pool[buttonID]].type;
         StartTowerDragging(buttonID);
     }
 
@@ -182,7 +183,7 @@ public class TowerBuilder : MonoBehaviour
     private IEnumerator DragTower()
     {
         StartDrag();
-        yield return new WaitUntil(() => isDragTower == false);
+        yield return new WaitUntil(() => buildBehaviour != BuildBehaviour.Build);
         BreakDrag();
     }
 
@@ -190,7 +191,7 @@ public class TowerBuilder : MonoBehaviour
     {
         HideUpgradeWindow();
         dragging_go.SetActive(true);
-        isDragTower = true;
+        buildBehaviour = BuildBehaviour.Build;
         SwitchBuilderBehaivour(BuildBehaviour.Build);
     }
 
@@ -210,7 +211,7 @@ public class TowerBuilder : MonoBehaviour
         builtTower[cell_id] = new_tower;
 
         StartTowerCooldownEvent?.Invoke(pressedButton, prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.build_cooldown);
-        if (prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.income > 0) bank.IncreaseIncome(this, 1);
+        if (prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.income > 0) bank.IncreaseIncome(this, cardTower[tower_id].income);
     }
 
     private int TakegoCell(GameObject go)
@@ -220,7 +221,7 @@ public class TowerBuilder : MonoBehaviour
             if (go == goCell[i]) return i;
         }
         Debug.Log("NOT FOUND GO NUMBER IN ARRAY");
-        isDragTower = false;
+        buildBehaviour = BuildBehaviour.Game;
         return 0;
     }    
 

@@ -8259,7 +8259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469621, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8956622209758469621, guid: 6485c470cab459e4face976ece458365, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -10154,8 +10154,7 @@ MonoBehaviour:
   - {fileID: 1457937720}
   - {fileID: 469961814}
   - {fileID: 99148596}
-  towerSprite: []
-  cardTower: []
+  rt_UpgradePanelBG: {fileID: 189618917}
 --- !u!1 &1791908601
 GameObject:
   m_ObjectHideFlags: 0

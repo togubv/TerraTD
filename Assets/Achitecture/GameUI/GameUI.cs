@@ -16,6 +16,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject canvasUpgrade;
     [SerializeField] private Transform transformUpgradeButtons;
     [SerializeField] private GameObject[] upgradeButton;
+    [SerializeField] private RectTransform rt_UpgradePanelBG;
 
     private Bank bank;
     private Slider[] sliderButtonLevelPool;
@@ -25,12 +26,10 @@ public class GameUI : MonoBehaviour
     private Image[] imageUpgradeButton;
     private SpriteRenderer sprR_dragging_tower;
     private int buttonSize;
-    //private bool[] boolButtonCooldown;
     private int[] pool;
     private int[] upgradeButtonID;
-    [SerializeField] private Sprite[] towerSprite;
-    [SerializeField] private TowerCard[] cardTower;
-    private bool isGame;
+    private Sprite[] towerSprite;
+    private TowerCard[] cardTower;
 
     private void Start()
     {
@@ -63,12 +62,14 @@ public class GameUI : MonoBehaviour
         bank = levelManager.GetComponent<Bank>();
         levelManager = levelManager.GetComponent<LevelManager>();
         sprR_dragging_tower = goDragging.GetComponent<SpriteRenderer>();
+
         bank.BankUpdateHandlerEvent += UpdateTowerButtons;
         bank.IncomeUpdateHandlerEvent += UpdateIncomeUI;
         bank.ElementCountUpdateHandlerEvent += UpdateElements;
         levelManager.PlayerHPHandlerEvent += UpdatePlayerHPUI;
         towerBuilder.StartTowerCooldownEvent += StartboolButtonCooldownAnimation;
         towerBuilder.ClickToBuiltTowerHandlerEvent += ShowUpgradeWindow;
+
         StartCoroutine(SliderIncomeValue());
     }
 
@@ -77,18 +78,14 @@ public class GameUI : MonoBehaviour
         pool = towerBuilder.Pool;
         goButtonLevelPool = gameScene.GoButtonLevelPool;
         cardTower = gameScene.CardTower;
-        //goButtonLevelPool = towerBuilder.GoButtonLevelPool;
         buttonSize = goButtonLevelPool.Length;
         imageButtonLevelPool = new Image[buttonSize];
         buttonButtonLevelPool = new Button[buttonSize];
         sliderButtonLevelPool = new Slider[buttonSize];
-        //towerSprite = tower_builder.towerSprite;
-        //boolButtonCooldown = new bool[buttonSize];
 
         for (int i = 1; i < buttonSize; i++)
         {
             imageButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Image>();
-            //imageButtonLevelPool[i].sprite = towerSprite[pool[i]];
             buttonButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Button>();
             sliderButtonLevelPool[i] = goButtonLevelPool[i].GetComponentInChildren<Slider>();
             if (i > 2 && i < 7)
@@ -179,7 +176,6 @@ public class GameUI : MonoBehaviour
     private void StartboolButtonCooldownAnimation(GameObject go, float cooldown)
     {
         int i = TakeButtonID(go);
-        //boolButtonCooldown[i] = true;
         if (i != 0)
         {
             go.GetComponent<Animator>().speed = 1 / cooldown;
@@ -192,7 +188,6 @@ public class GameUI : MonoBehaviour
     {
         buttonButtonLevelPool[i].enabled = false;
         yield return new WaitForSeconds(cooldown);
-        //boolButtonCooldown[i] = false;
         buttonButtonLevelPool[i].enabled = true;
     }
 
@@ -233,6 +228,7 @@ public class GameUI : MonoBehaviour
         {
             upgradeButtonID = countUpgrades;
             UpdateElementButtonsColor(upgradeButtonID);
+            int bgSize = 0;
             for (int i = 0; i < upgradeButton.Length; i++)
             {
                 if (countUpgrades[i] == 0)
@@ -241,10 +237,12 @@ public class GameUI : MonoBehaviour
                 }
                 else
                 {
+                    bgSize++;
                     imageUpgradeButton[i].sprite = towerSprite[countUpgrades[i]];
                     upgradeButton[i].SetActive(true);
                 }
             }
+            //rt_UpgradePanelBG.sizeDelta = new Vector2(100 * bgSize + 20, 120);
             canvasUpgrade.SetActive(true);
             transformUpgradeButtons.position = go.transform.position;
         }
