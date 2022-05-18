@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c59cc0821cdd8f4188672f2ade365cd, type: 3}
-  m_Name: TCard_1_Miner
+  m_Name: TCard_1_Miner_1
   m_EditorClassIdentifier: 
   _id: 1
-  _tower_name: Goldmine
-  _sprite: {fileID: 21300000, guid: fbf17b8a59327204e8c6b73f79617788, type: 3}
+  _tower_name: Goldmine 1
+  _sprite: {fileID: 21300000, guid: f0d3083cf06a1e04b9b9ccbd3d60736b, type: 3}
   _weapon_type: {fileID: 0}
   _shell: {fileID: 0}
-  _type: 1
+  _requiredResources: 1
+  _costElement: 00000000000000000000000000000000
   _cost: 1
-  _build_cooldown: 8
+  _build_cooldown: 1
+  _upperTower: 0b000000000000000000000000000000
   _income: 1
   _max_hp: 5
+  _damage_type: 0
   _damage: 0
   _cooldown: 0
   _shell_speed: 0
+  _shell_radius: 0

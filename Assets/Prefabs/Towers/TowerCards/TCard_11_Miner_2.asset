@@ -10,23 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c59cc0821cdd8f4188672f2ade365cd, type: 3}
-  m_Name: Element_Card_Fire
+  m_Name: TCard_11_Miner_2
   m_EditorClassIdentifier: 
-  _id: 7
-  _tower_name: Fire element
-  _sprite: {fileID: 21300000, guid: 9433affb45f85ac429e85057f10416ab, type: 3}
+  _id: 11
+  _tower_name: Goldmine 2
+  _sprite: {fileID: 21300000, guid: 5f4b458a3b361134bbb8aa051b76fddf, type: 3}
   _weapon_type: {fileID: 0}
   _shell: {fileID: 0}
-  _type: 2
-  _costFire: 1
-  _costWater: 0
-  _costEarth: 0
-  _costAir: 0
-  _cost: 0
-  _build_cooldown: 1
-  _upperTower: 00000000000000000000000000000000
-  _income: 0
-  _max_hp: 0
+  _requiredResources: 1
+  _costElement: 00000000000000000000000000000000
+  _cost: 10
+  _build_cooldown: 16
+  _upperTower: 0c000000000000000000000000000000
+  _income: 2
+  _max_hp: 10
+  _damage_type: 0
   _damage: 0
   _cooldown: 0
   _shell_speed: 0
+  _shell_radius: 0

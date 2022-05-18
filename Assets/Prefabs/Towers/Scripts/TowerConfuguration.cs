@@ -49,8 +49,7 @@ public class TowerConfuguration : Unit
     public override void Die()
     {
         Debug.Log("TOWER DIED!");
-        tower_builder.RemoveTowerFromGrid(number);
-        //if (card.income > 0) bank
+        tower_builder.RemoveTowerFromGame(number, 0);
         Destroy(gameObject);
     }
 }

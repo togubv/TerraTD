@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
     
 public class TowerBuilder : MonoBehaviour
@@ -24,6 +25,7 @@ public class TowerBuilder : MonoBehaviour
     private int draggingTowerID;
     private int targetedCell;
     private GameObject pressedButton;
+    private Camera mainCamera;
     [SerializeField] private GameObject[] builtTower;
 
     public delegate void StartTowerCooldown(GameObject go, float duration);
@@ -33,6 +35,7 @@ public class TowerBuilder : MonoBehaviour
 
     private void Awake()
     {
+        mainCamera = Camera.main;
         goCell = gameScene.GoCell;
         grid = new int[goCell.Length];
         goButtonLevelPool = gameScene.GoButtonLevelPool;
@@ -44,24 +47,28 @@ public class TowerBuilder : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(buildBehaviour.ToString());
+        //Debug.Log(buildBehaviour.ToString());
         if (Input.GetMouseButtonDown(0))
         {
-            switch(((int)buildBehaviour))
+            Vector2 cursor = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
+
+            switch (((int)buildBehaviour))
             {
                 case 0:
-                    ClickToTower();
+                    ClickToTower(hit);
                     //Debug.Log("GAME");
                     break;
                 case 1:
-                    ClickToCellForBuild();
+                    ClickToCellForBuild(hit);
                     //Debug.Log("BUILD");
                     break;
                 case 2:
+                    if (EventSystem.current.IsPointerOverGameObject() == false) HideUpgradeWindow();
                     //Debug.Log("UPGRADE");
                     break;
                 case 3:
-                    RemoveClickedTower();
+                    RemoveClickedTower(hit);
                     //Debug.Log("REMOVE");
                     break;
             }
@@ -80,7 +87,7 @@ public class TowerBuilder : MonoBehaviour
 
     private void IsDragTower()
     {
-        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 cursor = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] == 0)
@@ -100,11 +107,8 @@ public class TowerBuilder : MonoBehaviour
         HideUpgradeWindow();
     }
 
-    private void ClickToTower()
+    private void ClickToTower(RaycastHit2D hit)
     {
-        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
-
         if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] != 0)
         {
             SwitchBuilderBehaivour(BuildBehaviour.Upgrade);
@@ -117,11 +121,8 @@ public class TowerBuilder : MonoBehaviour
         }
     }
 
-    private void ClickToCellForBuild()
+    private void ClickToCellForBuild(RaycastHit2D hit)
     {
-        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
-
         if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone"))
         {
             int id = TakegoCell(hit.collider.gameObject);
@@ -135,11 +136,8 @@ public class TowerBuilder : MonoBehaviour
         
     }
 
-    private void RemoveClickedTower()
+    private void RemoveClickedTower(RaycastHit2D hit)
     {
-        Vector2 cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(cursor, Vector2.zero);
-
         if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone"))
         {
             int id = TakegoCell(hit.collider.gameObject);
@@ -168,7 +166,9 @@ public class TowerBuilder : MonoBehaviour
 
     public void StartTowerDragging(int buttonID)
     {
-        if (cardTower[pool[buttonID]].cost <= bank.count)
+        TowerCard card = cardTower[pool[buttonID]];
+        
+        if (CompareForTowerCostAndBank(card))
         {
             draggingTowerID = pool[buttonID];
             StartCoroutine(DragTower());
@@ -176,7 +176,53 @@ public class TowerBuilder : MonoBehaviour
         else
         {
             BreakDrag();
-            Debug.Log("Gold is not enough");
+        }
+    }
+
+    private bool CompareForTowerCostAndBank(TowerCard card)
+    {
+        switch(card.requiredResources)
+        {
+            case RequiredResources.Gold:
+                if (CompareGold())
+                    return true;
+                return false;
+
+            case RequiredResources.Element:
+                if (CompareElement())
+                    return true;
+                return false;
+
+            case RequiredResources.All:
+                if (CompareGold() && CompareElement())
+                    return true;
+                return false;
+
+            default:
+                return true;
+        }
+        
+        bool CompareGold()
+        {
+            if (card.cost > bank.count)
+            {
+                Debug.Log("Gold is not enough");
+                return false;
+            }
+            return true;
+        }
+
+        bool CompareElement()
+        {
+            for (int i = 0; i < card.costElement.Length; i++)
+            {
+                if (card.costElement[i] > bank.countElement[i])
+                {
+                    Debug.Log("Element is not enough");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
@@ -235,14 +281,17 @@ public class TowerBuilder : MonoBehaviour
         return 0;
     }
 
-    private void RemoveTowerFromGame(int cellID, int cashBack)
+    public void RemoveTowerFromGame(int cellID, int cashBack)
     {
+        TowerCard card = cardTower[grid[cellID]];
+        Debug.Log("Card name: " + card.name);
         Destroy(builtTower[cellID]);
         RemoveTowerFromGrid(cellID);
+        if (card.income > 0) bank.DecreaseIncome(this, card.income);
         if (cashBack > 0) bank.IncreaseBank(this, cashBack);
     }
 
-    public void RemoveTowerFromGrid(int cellID)
+    private void RemoveTowerFromGrid(int cellID)
     {
         grid[cellID] = 0;
         builtTower[cellID] = null;
@@ -264,7 +313,7 @@ public class TowerBuilder : MonoBehaviour
     {
         TowerCard card = cardTower[grid[targetedCell]];
 
-        if (CheckAndDecreaseElementCostAndCount(card, buttonID))
+        if (DecreaseCountElementOrGoldInBank(card, buttonID))
         {
             int towerID = grid[targetedCell];
             Debug.Log("towerID: " + towerID);
@@ -274,52 +323,55 @@ public class TowerBuilder : MonoBehaviour
             SetNewTower(upgradeID, targetedCell);
             HideUpgradeWindow();
         }
-        else
-        {
-            Debug.Log("Element is not enough");
-        }
     }
 
-    private bool CheckAndDecreaseElementCostAndCount(TowerCard card, int elementID)
+    private bool DecreaseCountElementOrGoldInBank(TowerCard card, int elementID)
     {
         TowerCard upperCard = cardTower[card.upperTower[elementID]];
-        Debug.Log("upperCard: " + upperCard.name);
-        switch (elementID)
+
+        switch (upperCard.requiredResources)
         {
-            case 0:
-                if (bank.countFire > 0 && upperCard.costFire <= bank.countFire)
-                {
-                    bank.DecreaseElementCount(this, elementID, upperCard.costFire);
+            case RequiredResources.Gold:
+                if (DecreaseGold())
                     return true;
-                }
-                else
-                    return false;
-            case 1:
-                if (bank.countWater > 0 && upperCard.costWater <= bank.countWater)
-                {
-                    bank.DecreaseElementCount(this, elementID, upperCard.costWater);
+                return false;
+
+            case RequiredResources.Element:
+                if (DecreaseElements())
                     return true;
-                }
-                else
-                    return false;
-            case 2:
-                if (bank.countEarth > 0 && upperCard.costEarth <= bank.countEarth)
-                {
-                    bank.DecreaseElementCount(this, elementID, upperCard.costEarth);
+                return false;
+
+            case RequiredResources.All:
+                if (DecreaseGold() && DecreaseElements())
                     return true;
-                }
-                else
-                    return false;
-            case 3:
-                if (bank.countAir > 0 && upperCard.costAir <= bank.countAir)
-                {
-                    bank.DecreaseElementCount(this, elementID, upperCard.costAir);
-                    return true;
-                }
-                else
-                    return false;
+                return false;
+
+            default:
+                return true;
         }
-        return false;
+
+        bool DecreaseGold()
+        {
+            if (CompareForTowerCostAndBank(upperCard))
+            {
+                bank.DecreaseBank(this, upperCard.cost);
+                return true;
+            }
+            return false;
+        }
+
+        bool DecreaseElements()
+        {
+            if (CompareForTowerCostAndBank(upperCard))
+            {
+                for (int i = 0; i < upperCard.costElement.Length; i++)
+                {
+                    if (upperCard.costElement[i] > 0) bank.DecreaseElementCount(this, i, upperCard.costElement[i]);
+                }
+                return true;
+            }
+            return false;
+        }
     }
 
     private void SwitchBuilderBehaivour(BuildBehaviour behaviour)

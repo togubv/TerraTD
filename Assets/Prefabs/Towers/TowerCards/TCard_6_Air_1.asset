@@ -17,17 +17,15 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 9f5c5adf164102e468776f00208df732, type: 3}
   _weapon_type: {fileID: 1962374236657110220, guid: e22784b08ce93824b91ebc1a96cbfefa, type: 3}
   _shell: {fileID: 3817748176197846931, guid: 0b1b3f0db6dac6d4ca8f4daebc9bf823, type: 3}
-  _type: 0
-  _costFire: 0
-  _costWater: 0
-  _costEarth: 0
-  _costAir: 1
+  _requiredResources: 2
+  _costElement: 00000000000000000000000001000000
   _cost: 0
   _build_cooldown: 10
-  _initialTower: 2
   _upperTower: 0000000000000000000000000a000000
   _income: 0
   _max_hp: 6
+  _damage_type: 0
   _damage: 0.5
   _cooldown: 1
   _shell_speed: 5
+  _shell_radius: 0

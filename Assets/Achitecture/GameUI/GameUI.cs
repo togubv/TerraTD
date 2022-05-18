@@ -24,6 +24,8 @@ public class GameUI : MonoBehaviour
     private Button[] buttonButtonLevelPool;
     private Image[] imageButtonLevelPool;
     private Image[] imageUpgradeButton;
+    private Text[] textButtonLevelPool;
+    private Text[] textUpgradeButton;
     private SpriteRenderer sprR_dragging_tower;
     private int buttonSize;
     private int[] pool;
@@ -44,19 +46,22 @@ public class GameUI : MonoBehaviour
 
         for (int i = 1; i < cardTower.Length; i++)
         {
-            towerSprite[i] = cardTower[i].sprite;            
+            towerSprite[i] = cardTower[i].sprite;
         }
 
         for (int i = 1; i < imageButtonLevelPool.Length; i++)
         {
             imageButtonLevelPool[i].sprite = towerSprite[pool[i]];
+            if (pool[i] != 0) textButtonLevelPool[i].text = cardTower[pool[i]].cost.ToString();
         }
 
         imageUpgradeButton = new Image[upgradeButton.Length];
         upgradeButtonID = new int[upgradeButton.Length];
+        textUpgradeButton = new Text[upgradeButton.Length];
         for (int i = 0; i < upgradeButton.Length; i++)
         {
             imageUpgradeButton[i] = upgradeButton[i].GetComponent<Image>();
+            textUpgradeButton[i] = upgradeButton[i].GetComponentInChildren<Text>();
         }
 
         bank = levelManager.GetComponent<Bank>();
@@ -82,16 +87,19 @@ public class GameUI : MonoBehaviour
         imageButtonLevelPool = new Image[buttonSize];
         buttonButtonLevelPool = new Button[buttonSize];
         sliderButtonLevelPool = new Slider[buttonSize];
+        textButtonLevelPool = new Text[buttonSize];
 
         for (int i = 1; i < buttonSize; i++)
         {
             imageButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Image>();
             buttonButtonLevelPool[i] = goButtonLevelPool[i].GetComponent<Button>();
             sliderButtonLevelPool[i] = goButtonLevelPool[i].GetComponentInChildren<Slider>();
+            textButtonLevelPool[i] = goButtonLevelPool[i].GetComponentInChildren<Text>();
             if (i > 2 && i < 7)
             {
                 buttonButtonLevelPool[i].enabled = false;
                 imageButtonLevelPool[i].enabled = false;
+                textButtonLevelPool[i].text = null;
             }
         }
     }
@@ -116,6 +124,7 @@ public class GameUI : MonoBehaviour
         UpdateCurrentGoldCountUI(newCount);
         //Debug.Log($"Get {newCount} from {sender.GetType()} reward");
         UpdateTowerButtonsColor(newCount);
+        UpdateElementButtonsColor(upgradeButtonID);
     }
 
     private void UpdateCurrentGoldCountUI(int count)
@@ -141,6 +150,7 @@ public class GameUI : MonoBehaviour
     private void UpdateElementButtonsColor(int[] updateButton)
     {
         upgradeButtonID = updateButton;
+
         for (int i = 0; i < imageUpgradeButton.Length; i++)
         {
             if (updateButton[i] != 0 && CheckElementsCost(updateButton[i]))
@@ -156,10 +166,17 @@ public class GameUI : MonoBehaviour
 
     private bool CheckElementsCost(int buttonID)
     {
-        if (cardTower[buttonID].costFire > bank.countFire) return false;
-        if (cardTower[buttonID].costWater > bank.countWater) return false;
-        if (cardTower[buttonID].costEarth > bank.countEarth) return false;
-        if (cardTower[buttonID].costAir > bank.countAir) return false;
+        TowerCard card = cardTower[buttonID];
+
+        if (card.cost > bank.count) 
+            return false;
+
+        for (int i = 0; i < card.costElement.Length; i++)
+        {
+            if (card.costElement[i] > bank.countElement[i])
+                return false;
+        }
+
         return true;
     }
 
@@ -239,10 +256,12 @@ public class GameUI : MonoBehaviour
                 {
                     bgSize++;
                     imageUpgradeButton[i].sprite = towerSprite[countUpgrades[i]];
+                    textUpgradeButton[i].text = cardTower[countUpgrades[i]].cost.ToString();
                     upgradeButton[i].SetActive(true);
+
+
                 }
             }
-            //rt_UpgradePanelBG.sizeDelta = new Vector2(100 * bgSize + 20, 120);
             canvasUpgrade.SetActive(true);
             transformUpgradeButtons.position = go.transform.position;
         }

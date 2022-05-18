@@ -10,23 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c59cc0821cdd8f4188672f2ade365cd, type: 3}
-  m_Name: Element_Card_Water
+  m_Name: TCard_12_Miner_3
   m_EditorClassIdentifier: 
-  _id: 8
-  _tower_name: Water element
-  _sprite: {fileID: 21300000, guid: aaab749cd5a56b243992d3071a058a3f, type: 3}
+  _id: 12
+  _tower_name: Goldmine 3
+  _sprite: {fileID: 21300000, guid: ba15161e0903c4a41aa7e3e96275a013, type: 3}
   _weapon_type: {fileID: 0}
   _shell: {fileID: 0}
-  _type: 2
-  _costFire: 0
-  _costWater: 1
-  _costEarth: 0
-  _costAir: 0
-  _cost: 0
-  _build_cooldown: 1
+  _requiredResources: 1
+  _costElement: 00000000000000000000000000000000
+  _cost: 20
+  _build_cooldown: 24
   _upperTower: 00000000000000000000000000000000
-  _income: 0
-  _max_hp: 0
+  _income: 3
+  _max_hp: 15
+  _damage_type: 0
   _damage: 0
   _cooldown: 0
   _shell_speed: 0
+  _shell_radius: 0
