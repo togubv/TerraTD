@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private TowersDraft tower_draft;
-    [SerializeField] private GameObject canvas_draft;
     [SerializeField] private GameObject canvas_gameUI;
     [SerializeField] private GameObject tower_builder;
 
     [Header("Level settings")]
-    [SerializeField] private int startFire;
-    [SerializeField] private int startWater;
-    [SerializeField] private int startEarth;
-    [SerializeField] private int startAir;
+    [SerializeField] private int incomeInterval;
+    [Tooltip("Fire/Water/Earth/Air")]
+    [SerializeField] private int[] startElement;
     [SerializeField] private int startMoney;
     [SerializeField] private int startHP;
     [SerializeField] private int startIncome;
@@ -22,23 +19,26 @@ public class LevelManager : MonoBehaviour
 
     private Bank bank;
     private bool isGame;
-    private int incomeInterval;
+    private int incomeTimer;
 
     public delegate void PlayerHPHandler(object sender, int oldHP, int newHP);
     public event PlayerHPHandler PlayerHPHandlerEvent;
 
+    public delegate void SliderIncomeIndicator(int newValue, int maxValue);
+    public event SliderIncomeIndicator SliderIncomeIndicatorEvent;
+
     public int PlayerHp { get; private set; }
     public int IncomeInterval => incomeInterval;
+    public int IncomeTimer => incomeTimer;
 
     private void Awake()
     {
         this.bank = GetComponent<Bank>();
-        incomeInterval = 15;
     }
 
     private void Start()
     {
-        StartCoroutine(DelayedStart());
+        StartLevel();
     }
 
     private void StartLevel()
@@ -48,17 +48,19 @@ public class LevelManager : MonoBehaviour
         IncreasePlayerHP(this, startHP);
         isGame = true;
         StartCoroutine(UpdateIncome());
-        bank.IncreaseElementCount(this, 0, startFire);
-        bank.IncreaseElementCount(this, 1, startWater);
-        bank.IncreaseElementCount(this, 2, startEarth);
-        bank.IncreaseElementCount(this, 3, startAir);
+
+        for (int i = 0; i < startElement.Length; i++)
+        {
+            if (i < startElement.Length) 
+                bank.IncreaseElementCount(this, i, startElement[i]);
+        }
     }
 
-    private IEnumerator DelayedStart()
-    {
-        yield return new WaitForSeconds(1.0f);
-        StartLevel();
-    }
+    //private IEnumerator DelayedStart()
+    //{
+    //    yield return new WaitForSeconds(0.1f);
+    //    StartLevel();
+    //}
 
     public void IncreasePlayerHP(object sender, int count)
     {
@@ -85,11 +87,18 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator UpdateIncome()
     {
+        incomeTimer = 1;
         while (isGame)
         {
-            yield return new WaitForSeconds(incomeInterval);
-            bank.IncreaseBank(this, bank.income);
-            Debug.Log("INCOME: " + bank.income);
+            yield return new WaitForSeconds(1);
+            incomeTimer += 1;
+            if (incomeTimer > incomeInterval)
+            {
+                bank.IncreaseBank(this, bank.income);
+                incomeTimer = 1;
+                Debug.Log("INCOME: " + bank.income);
+            }
+            SliderIncomeIndicatorEvent?.Invoke(incomeTimer, incomeInterval);
         }
     }
 }

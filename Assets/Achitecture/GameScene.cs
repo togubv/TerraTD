@@ -3,21 +3,17 @@ using UnityEngine;
 
 public class GameScene : MonoBehaviour
 {
-    protected GameObject[] goButtonDraft;
-    protected GameObject[] goButtonDraftPool;
     [SerializeField] private GameObject[] goButtonLevelPool;
-    [SerializeField] private GameObject[] goUpgradeButton;
     [SerializeField] private GameObject[] prefabTower;
     [SerializeField] private GameObject[] prefabMob;
-    [SerializeField] private TowerCard[] cardTower;
+    [SerializeField] private ListTowerCard listTowerCard;
     [SerializeField] private MobCard[] cardMob;
     [SerializeField] private GameObject[] goCell;
 
     public GameObject[] GoButtonLevelPool => goButtonLevelPool;
-    public GameObject[] GoUpgradeButton => goUpgradeButton;
     public GameObject[] PrefabTower => prefabTower;
     public GameObject[] PrefabMob => prefabMob;
-    public TowerCard[] CardTower => cardTower;
+    public ListTowerCard ListTowerCard => listTowerCard;
     public MobCard[] CardMob => cardMob;
     public GameObject[] GoCell => goCell;
 }

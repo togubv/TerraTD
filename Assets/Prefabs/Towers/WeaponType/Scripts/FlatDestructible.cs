@@ -7,6 +7,7 @@ public class FlatDestructible : TowerWeapon
     public List<GameObject> enemies_list;
     public bool attacking;
     private bool isCooldown;
+    private Transform towerBuilder;
 
     private void Awake()
     {
@@ -15,13 +16,14 @@ public class FlatDestructible : TowerWeapon
         this.cooldown = card.cooldown;
         this.speed = card.shell_speed;
         this.damage = card.damage;
+        this.towerBuilder = GetComponentInParent<TowerBuilder>().gameObject.transform;
     }
 
     private void FixedUpdate()
     {
         if (attacking && !isCooldown)
         {
-            GameObject new_shell = Instantiate(shell, transform);
+            GameObject new_shell = Instantiate(shell, transform.position, Quaternion.identity, towerBuilder);
             new_shell.GetComponent<ShellDestructible>().SetStats(speed, damage);
             isCooldown = true;
             StartCoroutine(StartCooldownTimer());

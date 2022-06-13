@@ -19,19 +19,24 @@ public class TowerBuilder : MonoBehaviour
     private BuildBehaviour buildBehaviour;
     private GameObject[] goButtonLevelPool;
     private GameObject[] prefabTower;
-    private TowerCard[] cardTower;
+    [SerializeField] private TowerCard[] cardTower;
     private int[] grid;
     private GameObject[] goCell;
     private int draggingTowerID;
     private int targetedCell;
     private GameObject pressedButton;
     private Camera mainCamera;
+    private bool[][] isButtonEnabled;
     [SerializeField] private GameObject[] builtTower;
 
     public delegate void StartTowerCooldown(GameObject go, float duration);
     public event StartTowerCooldown StartTowerCooldownEvent;
-    public delegate void ClickToBuiltTowerHandler(GameObject go, int[] countUpgrades);
+    public delegate void ClickToBuiltTowerHandler(GameObject go, TowerCard[] upperCards);
     public event ClickToBuiltTowerHandler ClickToBuiltTowerHandlerEvent;
+    public delegate void StartDraggingTowerHandler(TowerCard card);
+    public event StartDraggingTowerHandler StartDraggingTowerHandlerEvent;
+    public delegate void UpdateButtonCostBehaviour(bool[] buttons, bool[] updateButton);
+    public event UpdateButtonCostBehaviour UpdateButtonCostBehaviourEvent;
 
     private void Awake()
     {
@@ -40,14 +45,18 @@ public class TowerBuilder : MonoBehaviour
         grid = new int[goCell.Length];
         goButtonLevelPool = gameScene.GoButtonLevelPool;
         prefabTower = gameScene.PrefabTower;
-        cardTower = gameScene.CardTower;
+        cardTower = gameScene.ListTowerCard.TowerCard;
         builtTower = new GameObject[grid.Length];
+        isButtonEnabled = new bool[2][];
+        isButtonEnabled[0] = new bool[goButtonLevelPool.Length];
+        isButtonEnabled[1] = new bool[4];
+        bank.BankUpdateHandlerEvent += UpdateEnabledButtonsBank;
+        bank.ElementCountUpdateHandlerEvent += UpdateEnabledButtonsElement;
         SwitchBuilderBehaivour(BuildBehaviour.Game);
     }
 
     private void Update()
     {
-        //Debug.Log(buildBehaviour.ToString());
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 cursor = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -93,7 +102,6 @@ public class TowerBuilder : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject.CompareTag("CellNone") && grid[TakegoCell(hit.collider.gameObject)] == 0)
         {
             dragging_go.transform.position = hit.collider.transform.position;
-            
         }
         else
         {
@@ -113,12 +121,26 @@ public class TowerBuilder : MonoBehaviour
         {
             SwitchBuilderBehaivour(BuildBehaviour.Upgrade);
             targetedCell = TakegoCell(hit.collider.gameObject);
-            ClickToBuiltTowerHandlerEvent?.Invoke(hit.collider.gameObject, TakeCountOfUpgradesTower(hit.collider.gameObject));
+            TowerCard card = cardTower[grid[targetedCell]];
+            TowerCard[] upperCards = new TowerCard[card.upperTower.Length];
+            int summUpperCards = 0;
+            for (int i = 0; i < upperCards.Length; i++)
+            {
+                if (card.upperTower[i] != 0)
+                {
+                    upperCards[i] = cardTower[card.upperTower[i]];
+                    summUpperCards += 1;
+                }
+            }
+            if (summUpperCards < 1)
+            {
+                HideUpgradeWindow();
+                return;
+            }
+            ClickToBuiltTowerHandlerEvent?.Invoke(hit.collider.gameObject, upperCards);
+            return;
         }
-        else
-        {
-            HideUpgradeWindow();
-        }
+        HideUpgradeWindow();
     }
 
     private void ClickToCellForBuild(RaycastHit2D hit)
@@ -129,11 +151,12 @@ public class TowerBuilder : MonoBehaviour
             if (grid[id] == 0)
             {
                 SetNewTower(draggingTowerID, id);
+                StartTowerCooldownEvent?.Invoke(pressedButton, prefabTower[grid[id]].GetComponent<TowerConfuguration>().Card.build_cooldown);
                 buildBehaviour = BuildBehaviour.Game;
                 SwitchBuilderBehaivour(BuildBehaviour.Game);
             }
         }
-        
+        BreakDrag();
     }
 
     private void RemoveClickedTower(RaycastHit2D hit)
@@ -158,28 +181,30 @@ public class TowerBuilder : MonoBehaviour
     public void StartDragging(GameObject go)
     {
         int buttonID = TakeButtonNumber(go);
-        Debug.Log("buttonID: " + buttonID);
-        if (pool[buttonID] == 0) return;
+
+        if (pool[buttonID] == 0) 
+            return;
+        
         pressedButton = go;
         StartTowerDragging(buttonID);
+        StartDraggingTowerHandlerEvent?.Invoke(cardTower[pool[buttonID]]);
     }
 
     public void StartTowerDragging(int buttonID)
     {
         TowerCard card = cardTower[pool[buttonID]];
         
-        if (CompareForTowerCostAndBank(card))
+        if (CompareForTowerCostAndBank(card, true))
         {
             draggingTowerID = pool[buttonID];
             StartCoroutine(DragTower());
+            return;
         }
-        else
-        {
-            BreakDrag();
-        }
+
+        BreakDrag();
     }
 
-    private bool CompareForTowerCostAndBank(TowerCard card)
+    private bool CompareForTowerCostAndBank(TowerCard card, bool debugToggle)
     {
         switch(card.requiredResources)
         {
@@ -206,7 +231,8 @@ public class TowerBuilder : MonoBehaviour
         {
             if (card.cost > bank.count)
             {
-                Debug.Log("Gold is not enough");
+                if (debugToggle)
+                    Debug.Log("Gold is not enough");
                 return false;
             }
             return true;
@@ -218,7 +244,8 @@ public class TowerBuilder : MonoBehaviour
             {
                 if (card.costElement[i] > bank.countElement[i])
                 {
-                    Debug.Log("Element is not enough");
+                    if (debugToggle)
+                        Debug.Log("Element is not enough");
                     return false;
                 }
             }
@@ -256,8 +283,8 @@ public class TowerBuilder : MonoBehaviour
         bank.DecreaseBank(this, prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.cost);
         builtTower[cell_id] = new_tower;
 
-        StartTowerCooldownEvent?.Invoke(pressedButton, prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.build_cooldown);
-        if (prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.income > 0) bank.IncreaseIncome(this, cardTower[tower_id].income);
+        if (prefabTower[tower_id].GetComponent<TowerConfuguration>().Card.income > 0) 
+            bank.IncreaseIncome(this, cardTower[tower_id].income);
     }
 
     private int TakegoCell(GameObject go)
@@ -304,11 +331,6 @@ public class TowerBuilder : MonoBehaviour
         SwitchBuilderBehaivour(BuildBehaviour.Game);
     }
 
-    private int[] TakeCountOfUpgradesTower(GameObject go)
-    {
-        return cardTower[grid[TakegoCell(go)]].upperTower;
-    }
-
     public void UpgradeCurrentTower(int buttonID)
     {
         TowerCard card = cardTower[grid[targetedCell]];
@@ -352,7 +374,7 @@ public class TowerBuilder : MonoBehaviour
 
         bool DecreaseGold()
         {
-            if (CompareForTowerCostAndBank(upperCard))
+            if (CompareForTowerCostAndBank(upperCard, true))
             {
                 bank.DecreaseBank(this, upperCard.cost);
                 return true;
@@ -362,7 +384,7 @@ public class TowerBuilder : MonoBehaviour
 
         bool DecreaseElements()
         {
-            if (CompareForTowerCostAndBank(upperCard))
+            if (CompareForTowerCostAndBank(upperCard, true))
             {
                 for (int i = 0; i < upperCard.costElement.Length; i++)
                 {
@@ -372,6 +394,45 @@ public class TowerBuilder : MonoBehaviour
             }
             return false;
         }
+    }
+
+    private void UpdateEnabledButtonsBank(object sender, int oldCount, int newCount)
+    {
+        for (int i = 1; i < goButtonLevelPool.Length; i++)
+        {
+            if (i >= pool.Length)
+                continue;
+            if (pool[i] != 0 && CompareForTowerCostAndBank(cardTower[pool[i]], false))
+            {
+                isButtonEnabled[0][i] = true;
+                Debug.Log($"isButtonEnabled[0][{i}] = true");
+                continue;
+            }
+            isButtonEnabled[0][i] = false;
+            Debug.Log($"isButtonEnabled[0][{i}] = false");
+        }
+
+        UpdateButtonCostBehaviourEvent?.Invoke(isButtonEnabled[0], isButtonEnabled[1]);
+    }
+
+    private void UpdateEnabledButtonsElement(object sender, int elementID, int oldCount, int newCount)
+    {
+        if (draggingTowerID == 0)
+            return;
+        TowerCard card = cardTower[draggingTowerID];
+        for (int i = 0; i < isButtonEnabled.Length; i++)
+        {
+            if (CompareForTowerCostAndBank(cardTower[card.upperTower[i]], false))
+            {
+                isButtonEnabled[1][i] = true;
+                Debug.Log($"isButtonEnabled[1][{i}] = true");
+                continue;
+            }
+            isButtonEnabled[1][i] = false;
+            Debug.Log($"isButtonEnabled[1][{i}] = false");
+        }
+
+        UpdateButtonCostBehaviourEvent?.Invoke(isButtonEnabled[0], isButtonEnabled[1]);
     }
 
     private void SwitchBuilderBehaivour(BuildBehaviour behaviour)
